@@ -1,6 +1,7 @@
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/Components/NavBar/NavBar";
+import Footer from "@/Components/Footer/Footer";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -29,8 +30,11 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+
         <NavBar/>
         {children}
+        <Footer/>
+
         </body>
     </html>
   );

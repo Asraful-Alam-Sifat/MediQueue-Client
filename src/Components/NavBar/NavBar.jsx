@@ -38,32 +38,40 @@ const NavBar = () => {
               href={"#tutors"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
-              <li>tutors</li>
+              <li className="font-sans">tutors</li>
             </Link>
             <Link
               href={"#add-tutor"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
-              <li>add tutor</li>
+              <li className="font-sans">add tutor</li>
             </Link>
             <Link
               href={"#my-tutors"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
               {" "}
-              <li>my tutors</li>
+              <li className="font-sans">my tutors</li>
             </Link>
             <Link
               href={"#sessions"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
-              <li>my sessions</li>
+              <li className="font-sans">my sessions</li>
             </Link>
+            <li className="sm:hidden mt-4 pt-4 border-t border-white/10 flex flex-col gap-2 text-center">
+    <button className="btn btn-sm btn-ghost w-full justify-start text-emerald-400 ">
+      Sign In
+    </button>
+    <button className="btn btn-sm bg-emerald-500 hover:bg-emerald-600 text-white w-full">
+      Register Free
+    </button>
+  </li>
           </ul>
         </div>
 
         <Link href={"#home"} className="flex items-end-safe gap-1">
-          <Image src={Logo} alt="logo" className="w-12" />
+          <Image src={Logo} alt="logo" className="w-15" />
           <h1 className="font-serif font-extrabold text-4xl text-[#1B54A4] ">
             Medi<span className="text-emerald-700">Queue</span>
           </h1>
@@ -75,39 +83,40 @@ const NavBar = () => {
             href={"#tutors"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
-            <li>tutors</li>
+            <li className="font-sans">tutors</li>
           </Link>
           <Link
             href={"#add-tutor"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
-            <li>add tutor</li>
+            <li className="font-sans">add tutor</li>
           </Link>
           <Link
             href={"#my-tutors"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
             {" "}
-            <li>my tutors</li>
+            <li className="font-sans">my tutors</li>
           </Link>
           <Link
             href={"#sessions"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
-            <li>my sessions</li>
+            <li className="font-sans">my sessions</li>
           </Link>
         </ul>
       </div>
-      <div className="navbar-end w-full sm:w-auto flex flex-row items-center justify-center sm:justify-end gap-3">
+
+      <div className="navbar-end hidden sm:flex w-full sm:w-auto flex-row items-center justify-center sm:justify-end gap-3">
         <Link
           href={""}
-          className=" text-emerald-950 font-bold text-lg p-2 rounded-md bg-emerald-600 hover:bg-[#1A1A1A] hover:border-2 hover:border-emerald-900 hover:text-emerald-600 capitalize"
+          className=" text-emerald-950 font-bold text-lg p-2 rounded-md bg-emerald-600 hover:bg-[#1A1A1A] hover:border-2 hover:border-emerald-900 hover:text-emerald-600 capitalize font-sans"
         >
           sign in
         </Link>
         <Link
           href={""}
-          className=" text-emerald-950 font-bold text-lg p-2 rounded-md bg-emerald-600 hover:bg-[#1A1A1A] hover:border-2 hover:border-emerald-900 hover:text-emerald-600 capitalize"
+          className=" text-emerald-950 font-bold text-lg p-2 rounded-md bg-emerald-600 hover:bg-[#1A1A1A] hover:border-2 hover:border-emerald-900 hover:text-emerald-600 capitalize font-sans"
         >
           register free
         </Link>

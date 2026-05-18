@@ -16,6 +16,8 @@ const dmSerif = DM_Serif_Display({
   weight: ["400"], 
 });
 
+
+
 export const metadata = {
   title: "MediQueue",
   description: "Tutor Booking System",

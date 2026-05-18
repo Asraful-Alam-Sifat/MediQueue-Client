@@ -60,20 +60,20 @@ const NavBar = () => {
               <li className="font-sans">my sessions</li>
             </Link>
             <li className="sm:hidden mt-4 pt-4 border-t border-white/10 flex flex-col gap-2 text-center">
-    <button className="btn btn-sm btn-ghost w-full justify-start text-emerald-400 ">
-      Sign In
-    </button>
-    <button className="btn btn-sm bg-emerald-500 hover:bg-emerald-600 text-white w-full">
-      Register Free
-    </button>
-  </li>
+              <button className="btn btn-sm btn-ghost w-full justify-start text-emerald-400 ">
+                Sign In
+              </button>
+              <button className="btn btn-sm bg-emerald-500 hover:bg-emerald-600 text-white w-full">
+                Register Free
+              </button>
+            </li>
           </ul>
         </div>
 
         <Link href={"#home"} className="flex items-end-safe gap-1">
           <Image src={Logo} alt="logo" className="w-15" />
           <h1 className="font-serif font-extrabold text-4xl text-[#1B54A4] ">
-            Medi<span className="text-emerald-700">Queue</span>
+            Medi<span className="text-[#0DBF82]">Queue</span>
           </h1>
         </Link>
       </div>
@@ -110,13 +110,14 @@ const NavBar = () => {
       <div className="navbar-end hidden sm:flex w-full sm:w-auto flex-row items-center justify-center sm:justify-end gap-3">
         <Link
           href={""}
-          className=" text-emerald-950 font-bold text-lg p-2 rounded-md bg-emerald-600 hover:bg-[#1A1A1A] hover:border-2 hover:border-emerald-900 hover:text-emerald-600 capitalize font-sans"
+          className="inline-flex items-center gap-1.5 rounded-[10px] border border-[#4AFFC422] bg-[#4AFFC41A] px-4 py-2 text-[13px] font-medium text-[#4AFFC4] transition-all duration-150 hover:bg-[#4AFFC422] capitalize"
         >
           sign in
         </Link>
         <Link
           href={""}
-          className=" text-emerald-950 font-bold text-lg p-2 rounded-md bg-emerald-600 hover:bg-[#1A1A1A] hover:border-2 hover:border-emerald-900 hover:text-emerald-600 capitalize font-sans"
+          className="inline-flex items-center gap-1.5 rounded-[10px] border border-[#0DBF82] bg-[#0DBF82] px-4 py-2 text-[13px] font-semibold text-[#081A12] transition-all duration-150 hover:border-[#2DE8A8] hover:bg-[#2DE8A8] capitalize"
+          style={{ boxShadow: "0 0 20px rgba(74,255,196,0.133)" }}
         >
           register free
         </Link>

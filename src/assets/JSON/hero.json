@@ -1,0 +1,38 @@
+[
+  {
+    "badge": "✦ Trusted by 2,400+ students",
+    "badgeVariant": "violet",
+    "headline": "The smarter way to find a",
+    "em": "tutor",
+    "sub": "Browse verified educators across 20+ subjects. Real-time slot management and digital session tokens — zero scheduling conflicts.",
+    "primaryLabel": "Browse tutors",
+    "primaryIcon": "IoSearch",
+    "primaryHref": "/tutors",
+    "secondaryLabel": "Create free account",
+    "secondaryHref": "/register"
+  },
+  {
+    "badge": "✦ 100% verified educators",
+    "badgeVariant": "jade",
+    "headline": "Learn from",
+    "em": "expert educators",
+    "sub": "Every tutor provides their institution, years of experience, and fee upfront — complete transparency before you commit.",
+    "primaryLabel": "View all tutors",
+    "primaryIcon": "TbUserCheck",
+    "primaryHref": "/tutors",
+    "secondaryLabel": "Sign in",
+    "secondaryHref": "/login"
+  },
+  {
+    "badge": "✦ Flexible scheduling",
+    "badgeVariant": "gold",
+    "headline": "Book a session in",
+    "em": "60 seconds",
+    "sub": "Pick a tutor, check availability, and confirm your session. A unique digital token is generated instantly for every booking.",
+    "primaryLabel": "Book now",
+    "primaryIcon": "LuCalendarPlus",
+    "primaryHref": "/tutors",
+    "secondaryLabel": "Get started free",
+    "secondaryHref": "/register"
+  }
+]

@@ -80,10 +80,10 @@ export default function HeroBanner() {
         </div>
 
         <h1
-          className="mx-auto mb-5 max-w-2xl text-[52px] leading-[1.1] tracking-[-0.02em] text-[#F0EFFF]"
-          style={{ fontFamily: "'DM Serif Display', serif" }}
+          className="mx-auto mb-5 max-w-2xl text-[40px] md:text-[52px] leading-[1.1] tracking-[-0.02em] text-[#F0EFFF] text-center "
+  style={{ fontFamily: "'DM Serif Display', serif" }}
         >
-          {slide.headline}
+          {slide.headline}{" "} 
           <em
             style={{
               fontStyle: "italic",

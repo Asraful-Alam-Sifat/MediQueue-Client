@@ -35,26 +35,26 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <Link
-              href={"#tutors"}
+              href={"/tutors"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
               <li className="font-sans">tutors</li>
             </Link>
             <Link
-              href={"#add-tutor"}
+              href={"/add-tutor"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
               <li className="font-sans">add tutor</li>
             </Link>
             <Link
-              href={"#my-tutors"}
+              href={"/my-tutors"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
               {" "}
               <li className="font-sans">my tutors</li>
             </Link>
             <Link
-              href={"#sessions"}
+              href={"/sessions"}
               className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
             >
               <li className="font-sans">my sessions</li>
@@ -70,7 +70,7 @@ const NavBar = () => {
           </ul>
         </div>
 
-        <Link href={"#home"} className="flex items-end-safe gap-1">
+        <Link href={"/"} className="flex items-end-safe gap-1">
           <Image src={Logo} alt="logo" className="w-15" />
           <h1 className="font-serif font-extrabold text-4xl text-[#1B54A4] ">
             Medi<span className="text-[#0DBF82]">Queue</span>
@@ -78,28 +78,28 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal space-x-10 px-1 text-xl">
+        <ul className="menu menu-horizontal space-x-9 px-1 text-xl">
           <Link
-            href={"#tutors"}
+            href={"/tutors"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
             <li className="font-sans">tutors</li>
           </Link>
           <Link
-            href={"#add-tutor"}
+            href={"/add-tutor"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
             <li className="font-sans">add tutor</li>
           </Link>
           <Link
-            href={"#my-tutors"}
+            href={"/my-tutors"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
             {" "}
             <li className="font-sans">my tutors</li>
           </Link>
           <Link
-            href={"#sessions"}
+            href={"/sessions"}
             className="text-white/45  hover:text-white hover:opacity-95 transition-all duration-150 text-xl capitalize"
           >
             <li className="font-sans">my sessions</li>

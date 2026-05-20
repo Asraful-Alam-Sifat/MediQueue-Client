@@ -1,8 +1,8 @@
 "use client";
 import { Input, Label, Form, Button } from "@heroui/react";
 import { FaCheck } from "react-icons/fa6";
-import SubjectSelect from "@/Components/Sub-Select/SubjectSelect";
-import SelectTeachingMode from "@/Components/Select-Teaching-mode/SelectTeachingMode";
+import SubjectSelect from "@/Components/Dropdown/Sub-Select/SubjectSelect";
+import SelectTeachingMode from "@/Components/Dropdown/Select-Teaching-mode/SelectTeachingMode";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -13,7 +13,7 @@ const AddTutor = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    // Extra validation for custom component states before hitting the backend
+    
     if (!selectedSubject || !selectMode) {
        toast.warning(`Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`);
       return;
@@ -28,16 +28,23 @@ const AddTutor = () => {
       teachingMode: selectMode,
     };
 
-    const res = await fetch("http://localhost:5000/add-tutor", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(fullTutorData),
-    });
+ const res = await fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/add-tutor`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(fullTutorData),
+});
 
-    const data = await res.json();
-    console.log(data);
+const data = await res.json();
+// console.log(data);
+
+if (res.ok) {
+  toast.success("Add tutor successfully");
+} else {
+  const err = await res.json();
+  toast.error(err.message || "Failed to add tutor");
+}
   };
 
   return (
@@ -47,7 +54,7 @@ const AddTutor = () => {
           dashboard
         </h4>
         <h1 className="font-serif text-4xl capitalize my-3">add a new tutor</h1>
-        <p className="font-medium text-lg capitalize text-[#9896AF]">
+        <p className="font-sans font-medium text-lg capitalize text-[#9896AF]">
           fill in all details to list a tutor on the platform
         </p>
       </div>

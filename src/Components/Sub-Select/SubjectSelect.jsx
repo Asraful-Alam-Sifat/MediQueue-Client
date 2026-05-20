@@ -1,5 +1,5 @@
 "use client";
-import { Form, Label } from "@heroui/react";
+import { Label } from "@heroui/react";
 import { useState, useRef, useEffect } from "react";
 
 const subjects = [
@@ -27,9 +27,9 @@ const SubjectSelect = ({ value, onChange }) => {
      <div ref={ref} className="relative w-full">
       <Label
         htmlFor="input-type-subject"
-        className="font-sans text-[#70708E] text-base "
+        className="font-sans text-[#81819a] text-base felx gap-x-0  "
       >
-        Subject
+        Subject<span className="text-red-500 ml-0.5">*</span>
       </Label>
 
       <button

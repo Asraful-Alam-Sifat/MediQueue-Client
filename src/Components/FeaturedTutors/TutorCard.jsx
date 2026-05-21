@@ -56,14 +56,15 @@ const TutorCard = ({ tutor }) => {
       </div>
 
       <div className="text-[#5B5C77] space-y-1.5 px-6 mx-auto">
+         <p className="flex items-center gap-1.5 ">
+          <FaRegClock />
+          {tutor.timeSlot}
+        </p>
         <p className="flex items-center gap-1.5 ">
           <IoLocationOutline />
           {tutor.location}
         </p>
-        <p className="flex items-center gap-1.5 ">
-          <FaRegClock />
-          {tutor.timeSlot}
-        </p>
+       
         <p className="flex items-center gap-1.5 ">
           <MdOutlineComputer />
           {tutor.teachingMode}

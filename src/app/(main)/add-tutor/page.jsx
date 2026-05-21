@@ -88,7 +88,7 @@ if (res.ok) {
               </Label>
               <Input
                 id="input-type-image"
-                name="image"
+                name="photo"
                 placeholder="https://image.com/..."
                 className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
                 type="url"
@@ -153,7 +153,7 @@ if (res.ok) {
               </Label>
               <Input
                 id="input-type-fee"
-                name="hourlyFee"
+                name="pricePerHour"
                 placeholder="500"
                 className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
                 type="number"

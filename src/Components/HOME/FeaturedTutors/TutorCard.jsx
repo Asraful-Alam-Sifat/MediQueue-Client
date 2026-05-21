@@ -50,7 +50,7 @@ const TutorCard = ({ tutor }) => {
       <div className="px-6 py-4 space-y-1.5">
         <h3 className="font-medium text-xl capitalize">{tutor.name}</h3>
 
-        <h3 className="font-sans text-[#0DBF82] text-sm uppercase font-medium">
+        <h3 className="font-sans text-[#2DE8A8] text-sm uppercase font-medium">
           {tutor.subject}
         </h3>
       </div>

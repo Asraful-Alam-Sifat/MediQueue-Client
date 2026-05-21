@@ -109,13 +109,13 @@ const NavBar = () => {
 
       <div className="navbar-end hidden sm:flex w-full sm:w-auto flex-row items-center justify-center sm:justify-end gap-3">
         <Link
-          href={""}
+          href={"/login"}
           className="inline-flex items-center gap-1.5 rounded-[10px] border border-[#4AFFC422] bg-[#4AFFC41A] px-4 py-2 text-[13px] font-medium text-[#4AFFC4] transition-all duration-150 hover:bg-[#4AFFC422] capitalize"
         >
           sign in
         </Link>
         <Link
-          href={""}
+          href={"/register"}
           className="inline-flex items-center gap-1.5 rounded-[10px] border border-[#0DBF82] bg-[#0DBF82] px-4 py-2 text-[13px] font-semibold text-[#081A12] transition-all duration-150 hover:border-[#2DE8A8] hover:bg-[#2DE8A8] capitalize"
           style={{ boxShadow: "0 0 20px rgba(74,255,196,0.133)" }}
         >

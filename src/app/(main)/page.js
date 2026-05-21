@@ -1,7 +1,7 @@
-import FeaturedTutors from "@/Components/FeaturedTutors/FeaturedTutors";
-import HeroBanner from "@/Components/HeroBanner/HeroBanner";
-import Platform from "@/Components/Platform/Platform";
-import SessionProcess from "@/Components/Session-Process/SessionProcess";
+import FeaturedTutors from "@/Components/HOME/FeaturedTutors/FeaturedTutors";
+import HeroBanner from "@/Components/HOME/HeroBanner/HeroBanner";
+import Platform from "@/Components/HOME/Platform/Platform";
+import SessionProcess from "@/Components/HOME/Session-Process/SessionProcess";
 
 
 

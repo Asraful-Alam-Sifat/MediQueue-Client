@@ -27,7 +27,7 @@ const SessionProcess = () => {
     <div className="bg-[#131319] py-15 border-t border-b border-x border-t-white/5 border-b-white/10 border-x-white/5  hover:border-b-[#04ffc4]/10 hover:border-x-white/10 transition-all duration-500 hover:-translate-y-1 shadow-lg hover:shadow-[#04ffc4]/5 ">
       <div className="max-w-11/12 mx-auto  ">
         <div>
-          <h3 className="font-sans text-[#0DBF82] uppercase font-medium ">
+          <h3 className="font-sans text-[#2DE8A8] uppercase font-medium ">
             process
           </h3>
           <h1 className="font-serif text-4xl capitalize my-3">

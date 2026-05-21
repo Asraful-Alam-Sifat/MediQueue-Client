@@ -10,7 +10,7 @@ const FeaturedTutors = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/featured-tutors` || "http://localhost:5000/featured-tutors")
+    fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_LIVE_URL}/featured-tutors` || "http://localhost:5000/featured-tutors")
       .then((res) => res.json())
       .then((data) => {
         setTutors(data);
@@ -32,7 +32,7 @@ const FeaturedTutors = () => {
   return (
     <div className="max-w-11/12 mx-auto py-15">
       <div>
-        <h3 className="font-sans text-[#0DBF82] uppercase font-medium ">
+        <h3 className="font-sans text-[#2DE8A8] uppercase font-medium ">
           featured
         </h3>
         <h1 className="font-serif text-4xl capitalize my-3">

@@ -9,7 +9,7 @@ const Platform = () => {
   return (
     <div className="max-w-11/12 mx-auto py-15">
       <div>
-        <h3 className="font-sans text-[#0DBF82] uppercase font-medium ">
+        <h3 className="font-sans text-[#2DE8A8] uppercase font-medium ">
           Platform
         </h3>
         <h1 className="font-serif text-4xl capitalize my-3">

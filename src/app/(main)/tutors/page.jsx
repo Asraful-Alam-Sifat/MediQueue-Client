@@ -11,8 +11,6 @@ const TutorsPage = () => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
 
-  // ✅ FIX 1: Fetch the complete dataset once on mount. 
-  // Removed state dependencies here so it doesn't trigger blank flashes.
   useEffect(() => {
     const url = `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors`;
 
@@ -28,7 +26,7 @@ const TutorsPage = () => {
       });
   }, []);
 
-  // ✅ FIX 2: Client-side engine computes your filters flawlessly
+
   const filteredTutors = tutors.filter((tutor) => {
     const matchesName = tutor.name
       ?.toLowerCase()
@@ -37,7 +35,7 @@ const TutorsPage = () => {
     const matchesSubject =
       !selectedSubject || tutor.subject === selectedSubject;
 
-    // Fixed database mapping from tutor.mode to tutor.teachingMode 
+   
     const matchesMode =
       !selectedMode ||
       tutor.teachingMode?.toLowerCase() === selectedMode.toLowerCase();
@@ -69,19 +67,23 @@ const TutorsPage = () => {
     <div className="min-h-screen  text-white ">
       <div>
         <div className="mb-12 bg-[#131319]">
-          <div className="max-w-11/12 mx-auto p-8 justify-between flex flex-wrap items-center gap-2 mb-10">
-            <div className="space-x-5">
+          <div className="max-w-11/12 mx-auto p-8 justify-between flex items-center gap-y-5 mb-10 flex-col sm:flex-row">
+
+
+            <div className="w-full space-x-5 flex flex-col sm:flex-row gap-y-5">
               <input
                 type="text"
                 placeholder="Search by name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 min-w-[180px] bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg
+                className="flex-1 w-full sm:max-w-[250px] bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg
                            text-[#ccc] placeholder-[#666] text-sm px-4 py-2.5 outline-none
                            focus:border-[#555]"
               />
 
-              <select
+              <div className="flex justify-around gap-5">
+                <select
+                id='subject'
                 value={selectedSubject}
                 onChange={(e) => setSelectedSubject(e.target.value)}
                 className="bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg text-[#ccc]
@@ -99,6 +101,7 @@ const TutorsPage = () => {
 
               {/* Mode dropdown */}
               <select
+              id='mode'
                 value={selectedMode}
                 onChange={(e) => setSelectedMode(e.target.value)}
                 className="bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg text-[#ccc]
@@ -110,15 +113,18 @@ const TutorsPage = () => {
                 <option value="Offline">Offline</option>
                 <option value="Both">Both</option>
               </select>
+              </div>
             </div>
-            <span className="text-[#888] text-sm whitespace-nowrap">
+
+
+            <span className="text-[#888] text-sm whitespace-nowrap ">
               {filteredTutors.length} tutors
             </span>
           </div>
         </div>
 
         {/* Grid display layout */}
-        <div className="max-w-10/12 mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-10/12 mx-auto px-4 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTutors.length > 0 ? (
             filteredTutors.map((tutor) => (
               <TutorCard key={tutor._id || tutor.id} tutor={tutor} />

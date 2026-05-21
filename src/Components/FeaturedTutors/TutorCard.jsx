@@ -10,7 +10,7 @@ import {
 
 const TutorCard = ({ tutor }) => {
   // console.log(tutor);
-  const isBooked = tutor.totalSlots === tutor.bookedSlots;
+  const isBooked = tutor.totalSlots === 0;
   return (
     <div className="group relative bg-[#13131A]/80 rounded-xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-[#4affc4]/20 hover:-translate-y-1 pb-5">
       <div
@@ -95,7 +95,7 @@ const TutorCard = ({ tutor }) => {
         </h1>
 
         <Link
-          href={""}
+          href={`/tutor/${tutor._id}`}
           className="inline-flex items-center gap-1.5 rounded-2xl border border-[#0DBF82] bg-[#0DBF82] px-4 py-2 text-[13px] font-semibold text-[#081A12] transition-all duration-150 hover:border-[#2DE8A8] hover:bg-[#2DE8A8] capitalize"
           style={{ boxShadow: "0 0 20px rgba(74,255,196,0.133)" }}
         >

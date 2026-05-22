@@ -1,6 +1,3 @@
-// No "use client" here
-// import TutorsClient from "@/Components/TutorsClient";
-
 import TutorsClient from "@/Components/Tutors-Client/TutorsClient";
 
 export const metadata = {

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import TutorCard from "@/Components/HOME/FeaturedTutors/TutorCard";
 import CustomSelect from "@/Components/CustomDropDown/CustomSelect";
 
-
 const TutorsClient = () => {
   const [tutors, setTutors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +13,9 @@ const TutorsClient = () => {
   const [dateTo, setDateTo] = useState("");
 
   useEffect(() => {
-    const url = `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors` || "http://localhost:5000/featured-tutors";
+    const url =
+      `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors` ||
+      "http://localhost:5000/featured-tutors";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -74,19 +75,29 @@ const TutorsClient = () => {
                            focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
               />
               <div className="flex justify-around gap-5">
-               <CustomSelect
-  value={selectedSubject || "All subjects"}
-  onChange={(val) => setSelectedSubject(val === "All subjects" ? "" : val)}
-  options={["All subjects", "Mathematics", "Physics", "Chemistry", "Biology", "English", "History"]}
-  inAddTutorForm={true} 
-/>
+                <CustomSelect
+                  value={selectedSubject || "All subjects"}
+                  onChange={(val) =>
+                    setSelectedSubject(val === "All subjects" ? "" : val)
+                  }
+                  options={[
+                    "All subjects",
+                    "Mathematics",
+                    "Physics",
+                    "Chemistry",
+                    "Biology",
+                    "English",
+                    "History",
+                  ]}
+                  inAddTutorForm={true}
+                />
 
-                  <CustomSelect
-  value={selectedMode || "Mode"}
-  onChange={(val) => setSelectedMode(val === "Mode" ? "" : val)}
-  options={["Mode", "Online", "Offline", "Both"]}
-   inAddTutorForm={true} 
-/> 
+                <CustomSelect
+                  value={selectedMode || "Mode"}
+                  onChange={(val) => setSelectedMode(val === "Mode" ? "" : val)}
+                  options={["Mode", "Online", "Offline", "Both"]}
+                  inAddTutorForm={true}
+                />
               </div>
             </div>
             <span className="text-[#888] text-sm whitespace-nowrap">

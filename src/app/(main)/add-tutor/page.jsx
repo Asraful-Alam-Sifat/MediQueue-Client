@@ -1,8 +1,7 @@
-import AddTutorClient from '@/Components/Add-Tutors-Client/AddTutorsClient';
-import React from 'react';
+import AddTutorClient from "@/Components/Add-Tutors-Client/AddTutorsClient";
 
 const AddTutorsPage = () => {
-  return <AddTutorClient/>
+  return <AddTutorClient />;
 };
 
 export default AddTutorsPage;

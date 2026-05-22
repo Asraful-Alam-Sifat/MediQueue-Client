@@ -9,12 +9,14 @@ import CustomSelect from "../CustomDropDown/CustomSelect";
 const AddTutorClient = () => {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [selectMode, setSelectMode] = useState("");
-   const [inAddTutorForm, setInAddTutorForm] = useState(false); // Assuming this component is used in AddTutorForm, adjust as needed
+  const [inAddTutorForm, setInAddTutorForm] = useState(false);
 
   const onSubmit = async (e) => {
-    e.preventDefault();   
+    e.preventDefault();
     if (!selectedSubject || !selectMode) {
-       toast.warning(`Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`);
+      toast.warning(
+        `Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`,
+      );
       return;
     }
     const formData = new FormData(e.currentTarget);
@@ -26,23 +28,26 @@ const AddTutorClient = () => {
       teachingMode: selectMode,
     };
 
- const res = await fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/add-tutor`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(fullTutorData),
-});
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/add-tutor`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fullTutorData),
+      },
+    );
 
-const data = await res.json();
-// console.log(data);
+    const data = await res.json();
+    // console.log(data);
 
-if (res.ok) {
-  toast.success("Add tutor successfully");
-} else {
-  const err = await res.json();
-  toast.error(err.message || "Failed to add tutor");
-}
+    if (res.ok) {
+      toast.success("Add tutor successfully");
+    } else {
+      const err = await res.json();
+      toast.error(err.message || "Failed to add tutor");
+    }
   };
 
   return (
@@ -92,28 +97,34 @@ if (res.ok) {
                 className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] outline-none
                            focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                 type="url"
-                
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            
             <CustomSelect
-  value={selectedSubject}
-  onChange={(val) => setSelectedSubject(val)}
-  options={["All subjects", "Mathematics", "Physics", "Chemistry", "Biology", "English", "History"]}
-  inAddTutorForm={inAddTutorForm}
-  setInAddTutorForm={setInAddTutorForm}
-/>
-            
-                   <CustomSelect
-  value={selectMode}
-  onChange={(val) => setSelectMode(val === "Mode" ? "" : val)}
-  options={["Mode", "Online", "Offline", "Both"]}
-  inAddTutorForm={inAddTutorForm}
-  setInAddTutorForm={setInAddTutorForm}
-/>
+              value={selectedSubject}
+              onChange={(val) => setSelectedSubject(val)}
+              options={[
+                "All subjects",
+                "Mathematics",
+                "Physics",
+                "Chemistry",
+                "Biology",
+                "English",
+                "History",
+              ]}
+              inAddTutorForm={inAddTutorForm}
+              setInAddTutorForm={setInAddTutorForm}
+            />
+
+            <CustomSelect
+              value={selectMode}
+              onChange={(val) => setSelectMode(val === "Mode" ? "" : val)}
+              options={["Mode", "Online", "Offline", "Both"]}
+              inAddTutorForm={inAddTutorForm}
+              setInAddTutorForm={setInAddTutorForm}
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

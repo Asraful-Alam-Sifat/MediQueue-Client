@@ -5,16 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { LuCalendarPlus } from "react-icons/lu";
 
-
-
 export const generateMetadata = async ({ params }) => {
-    const { id } = await params;
-    await connectDB();
-    const tutor = await Tutor.findById(id).lean();
-    return {
-        title: `${tutor.name} | Mediqueue`,
-        description: `Learn from ${tutor.name}, a ${tutor.subject} expert with ${tutor.experience} years of experience.`,
-    };
+  const { id } = await params;
+  await connectDB();
+  const tutor = await Tutor.findById(id).lean();
+  return {
+    title: `${tutor.name} | Mediqueue`,
+    description: `Learn from ${tutor.name}, a ${tutor.subject} expert with ${tutor.experience} years of experience.`,
+  };
 };
 
 export const formatDate = (dateString) => {
@@ -36,9 +34,8 @@ const TutorDetailsPage = async ({ params }) => {
   console.log("Looking for ID:", id);
 
   await connectDB();
-  // console.log('DB connected, searching for:', id);
+
   const tutor = await Tutor.findById(id).lean();
-  // console.log('Tutor found:', tutor);
 
   if (!tutor) return <div>Tutor not found</div>;
 
@@ -96,7 +93,7 @@ const TutorDetailsPage = async ({ params }) => {
             <div className=" min-w-30 p-4 text-center group relative bg-[#13131A]/80 rounded-xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-[#4affc4]/20 hover:-translate-y-1 pb-5">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-28 left-1/2 h-[400px] w-[700px] -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute -top-28 left-1/2 h-100 w-175 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{
                   background:
                     "radial-gradient(ellipse, rgba(74,255,196,0.08) 0%, transparent 70%)",
@@ -127,7 +124,7 @@ const TutorDetailsPage = async ({ params }) => {
             <div className=" min-w-30 p-4 text-center group relative bg-[#13131A]/80 rounded-xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-[#4affc4]/20 hover:-translate-y-1 pb-5">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-28 left-1/2 h-[400px] w-[700px] -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute -top-28 left-1/2 h-100 w-175 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{
                   background:
                     "radial-gradient(ellipse, rgba(74,255,196,0.08) 0%, transparent 70%)",
@@ -153,7 +150,7 @@ const TutorDetailsPage = async ({ params }) => {
             <div className=" min-w-30 p-4 text-center group relative bg-[#13131A]/80 rounded-xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-[#4affc4]/20 hover:-translate-y-1 pb-5">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-28 left-1/2 h-[400px] w-[700px] -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute -top-28 left-1/2 h-100 w-175 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{
                   background:
                     "radial-gradient(ellipse, rgba(74,255,196,0.08) 0%, transparent 70%)",
@@ -179,7 +176,7 @@ const TutorDetailsPage = async ({ params }) => {
             <div className=" min-w-30 p-4 text-center group relative bg-[#13131A]/80 rounded-xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-[#4affc4]/20 hover:-translate-y-1 pb-5">
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute -top-28 left-1/2 h-[400px] w-[700px] -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className="pointer-events-none absolute -top-28 left-1/2 h-100 w-175 -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{
                   background:
                     "radial-gradient(ellipse, rgba(74,255,196,0.08) 0%, transparent 70%)",

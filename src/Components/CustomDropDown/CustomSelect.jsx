@@ -2,13 +2,20 @@
 import { Label } from "@heroui/react";
 import { useEffect, useRef, useState } from "react";
 
-const subjects = ["All subjects", "Mathematics", "Physics", "Chemistry", "Biology", "English", "History"];
+const subjects = [
+  "All subjects",
+  "Mathematics",
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "English",
+  "History",
+];
 const modes = ["Mode", "Online", "Offline", "Both"];
-
 
 const CustomSelect = ({ value, onChange, options, inAddTutorForm = false }) => {
   const [open, setOpen] = useState(false);
- 
+
   const ref = useRef(null);
 
   useEffect(() => {
@@ -21,14 +28,14 @@ const CustomSelect = ({ value, onChange, options, inAddTutorForm = false }) => {
 
   return (
     <div ref={ref} className="relative">
-        {!inAddTutorForm && (
-            <Label
-                    htmlFor="input-type-teaching-mode"
-                    className="font-sans text-[#81819a] text-base felx gap-x-0 mb-1 "
-                  >
-                    Teaching mode<span className="text-red-500 ml-0.5">*</span>
-                  </Label>
-        )}
+      {!inAddTutorForm && (
+        <Label
+          htmlFor="input-type-teaching-mode"
+          className="font-sans text-[#81819a] text-base felx gap-x-0 mb-1 "
+        >
+          Teaching mode<span className="text-red-500 ml-0.5">*</span>
+        </Label>
+      )}
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -44,7 +51,12 @@ const CustomSelect = ({ value, onChange, options, inAddTutorForm = false }) => {
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
 

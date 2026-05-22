@@ -6,23 +6,16 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const LoginForm = () => {
-//   const onSubmit = (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(e.currentTarget);
-//     const user = Object.fromEntries(formData.entries());
-//     console.log("Logged In User Data: ", user);
-//   };
+  const router = useRouter();
 
-const router = useRouter();
-
-const {
+  const {
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
 
-   const handleLoginFunc = async (data) => {
+  const handleLoginFunc = async (data) => {
     const { email, password } = data;
 
     const { data: response, error } = await authClient.signIn.email({
@@ -46,53 +39,63 @@ const {
     router.push("/");
   };
 
-
   return (
-    /* Move the HTML form tag to the absolute outside layer */
     <div>
-        <Card className="w-full max-w-md bg-transparent p-2">
-      <Card.Content>
-        {/* 2. Keep this native lowercase form tag to handle onSubmit */}
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleLoginFunc)} >
-          
-          <TextField className="w-full flex flex-col gap-1" name="email" type="email">
-            <Label className="font-sans text-[#81819a] text-base">Email</Label>
-            <Input 
-              id="input-type-email"
-              {...register('email', { required: true })}
-              placeholder="jane@example.com" 
-              required
-              className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
-            />
-          </TextField>
-
-          <TextField className="w-full flex flex-col gap-1 mt-3" name="password" type="password">
-            <div className="flex justify-between items-center mb-1">
-              <Label className="font-sans text-[#81819a] text-base">Password</Label>
-              {/* Note: Make sure Link is imported from next/link if using Next.js */}
-              <span className="font-sans text-[#2DE8A8] font-medium text-sm sm:text-base cursor-pointer hover:opacity-80">
-                Forgot?
-              </span>
-            </div>
-            <Input 
-              id="input-type-password"
-              placeholder="••••••••" 
-              {...register('password', { required: true })}
-              required
-              className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
-            />
-          </TextField>
-
-          <Button
-            type="submit"
-            className="w-full rounded-[10px] bg-[#0DBF82] hover:bg-[#2DE8A8] text-[#081A12] font-semibold text-lg capitalize mt-3 shadow-[0_0_20px_rgba(74,255,196,0.15)] transition-all duration-150"
+      <Card className="w-full max-w-md bg-transparent p-2">
+        <Card.Content>
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(handleLoginFunc)}
           >
-            Sign In
-          </Button>
-          
-        </form>
-      </Card.Content>
-    </Card>
+            <TextField
+              className="w-full flex flex-col gap-1"
+              name="email"
+              type="email"
+            >
+              <Label className="font-sans text-[#81819a] text-base">
+                Email
+              </Label>
+              <Input
+                id="input-type-email"
+                {...register("email", { required: true })}
+                placeholder="jane@example.com"
+                required
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
+              />
+            </TextField>
+
+            <TextField
+              className="w-full flex flex-col gap-1 mt-3"
+              name="password"
+              type="password"
+            >
+              <div className="flex justify-between items-center mb-1">
+                <Label className="font-sans text-[#81819a] text-base">
+                  Password
+                </Label>
+
+                <span className="font-sans text-[#2DE8A8] font-medium text-sm sm:text-base cursor-pointer hover:opacity-80">
+                  Forgot?
+                </span>
+              </div>
+              <Input
+                id="input-type-password"
+                placeholder="••••••••"
+                {...register("password", { required: true })}
+                required
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
+              />
+            </TextField>
+
+            <Button
+              type="submit"
+              className="w-full rounded-[10px] bg-[#0DBF82] hover:bg-[#2DE8A8] text-[#081A12] font-semibold text-lg capitalize mt-3 shadow-[0_0_20px_rgba(74,255,196,0.15)] transition-all duration-150"
+            >
+              Sign In
+            </Button>
+          </form>
+        </Card.Content>
+      </Card>
     </div>
   );
 };

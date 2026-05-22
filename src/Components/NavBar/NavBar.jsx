@@ -60,10 +60,16 @@ const NavBar = () => {
               <li className="font-sans">my sessions</li>
             </Link>
             <li className="sm:hidden mt-4 pt-4 border-t border-white/10 flex flex-col gap-2 text-center">
-              <Link href={"/login"} className="btn btn-sm btn-ghost w-full justify-start text-emerald-400 ">
+              <Link
+                href={"/login"}
+                className="btn btn-sm btn-ghost w-full justify-start text-emerald-400 "
+              >
                 Sign In
               </Link>
-              <Link href={"/register"} className="btn btn-sm bg-emerald-500 hover:bg-emerald-600 text-white w-full">
+              <Link
+                href={"/register"}
+                className="btn btn-sm bg-emerald-500 hover:bg-emerald-600 text-white w-full"
+              >
                 Register Free
               </Link>
             </li>

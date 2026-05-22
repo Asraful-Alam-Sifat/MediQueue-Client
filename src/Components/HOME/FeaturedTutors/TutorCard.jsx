@@ -3,13 +3,9 @@ import Link from "next/link";
 import { FaRegClock } from "react-icons/fa";
 import { LuCalendarPlus } from "react-icons/lu";
 import { IoLocationOutline } from "react-icons/io5";
-import {
-  MdOutlineComputer,
-  MdOutlineErrorOutline,
-} from "react-icons/md";
+import { MdOutlineComputer, MdOutlineErrorOutline } from "react-icons/md";
 
 const TutorCard = ({ tutor }) => {
-  // console.log(tutor);
   const isBooked = tutor.totalSlots === 0;
   return (
     <div className="group relative bg-[#13131A]/80 rounded-xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-[#4affc4]/20 hover:-translate-y-1 pb-5">
@@ -56,7 +52,7 @@ const TutorCard = ({ tutor }) => {
       </div>
 
       <div className="text-[#5B5C77] space-y-1.5 px-6 mx-auto">
-         <p className="flex items-center gap-1.5 ">
+        <p className="flex items-center gap-1.5 ">
           <FaRegClock />
           {tutor.timeSlot}
         </p>
@@ -64,7 +60,7 @@ const TutorCard = ({ tutor }) => {
           <IoLocationOutline />
           {tutor.location}
         </p>
-       
+
         <p className="flex items-center gap-1.5 ">
           <MdOutlineComputer />
           {tutor.teachingMode}

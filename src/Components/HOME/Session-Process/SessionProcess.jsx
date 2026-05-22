@@ -22,7 +22,6 @@ const processSteps = [
 ];
 
 const SessionProcess = () => {
-  // console.log(processSteps);
   return (
     <div className="bg-[#131319] py-15 border-t border-b border-x border-t-white/5 border-b-white/10 border-x-white/5  hover:border-b-[#04ffc4]/10 hover:border-x-white/10 transition-all duration-500 hover:-translate-y-1 shadow-lg hover:shadow-[#04ffc4]/5 ">
       <div className="max-w-11/12 mx-auto  ">

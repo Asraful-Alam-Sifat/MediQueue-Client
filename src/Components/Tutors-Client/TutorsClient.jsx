@@ -69,7 +69,7 @@ const TutorsClient = () => {
                 placeholder="Search by name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 w-full sm:max-w-[250px] bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg
+                className="flex-1 w-full sm:max-w-[250px] bg-[#191921] border border-white/10 rounded-lg
                            text-[#ccc] placeholder-[#666] text-sm px-4 py-2.5 outline-none
                            focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
               />

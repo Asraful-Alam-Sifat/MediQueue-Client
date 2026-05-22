@@ -108,7 +108,7 @@ if (res.ok) {
 />
             
                    <CustomSelect
-  value={selectMode || "Mode"}
+  value={selectMode}
   onChange={(val) => setSelectMode(val === "Mode" ? "" : val)}
   options={["Mode", "Online", "Offline", "Both"]}
   inAddTutorForm={inAddTutorForm}

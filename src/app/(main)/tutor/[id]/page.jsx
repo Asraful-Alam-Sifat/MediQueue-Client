@@ -43,15 +43,15 @@ const TutorDetailsPage = async ({ params }) => {
   if (!tutor) return <div>Tutor not found</div>;
 
   return (
-    <div className="max-w-11/12 mx-auto py-15">
+    <div className="w-11/12 sm:max-w-9/12 mx-auto py-15">
       <Link
         href="/tutors"
-        className="font-sans font-medium text-base capitalize text-[#9896AF] flex items-center gap-2 xl:pl-35"
+        className="font-sans font-medium text-base capitalize text-[#9896AF] flex items-center gap-2 "
       >
         <FaArrowLeftLong />
         back to tutors
       </Link>
-      <div className="max-w-10/12 grid grid-cols-1 md:grid-cols-3 p-3 gap-5 mx-auto">
+      <div className="max-w-12/12 grid grid-cols-1 md:grid-cols-3 p-3 py-5 gap-5 mx-auto bg-[#13131A]/80 border-2 border-white/5 rounded-xl mt-10">
         <div className="relative w-44 h-44 mx-auto mt-6 rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_25px_rgba(74,255,196,0.08)] col-span-1">
           <Image
             src={

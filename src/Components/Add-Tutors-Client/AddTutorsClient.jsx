@@ -1,24 +1,22 @@
 "use client";
 import { Input, Label, Form, Button } from "@heroui/react";
 import { FaCheck } from "react-icons/fa6";
-import SubjectSelect from "@/Components/Dropdown/Sub-Select/SubjectSelect";
-import SelectTeachingMode from "@/Components/Dropdown/Select-Teaching-mode/SelectTeachingMode";
+
 import { useState } from "react";
 import { toast } from "react-toastify";
+import CustomSelect from "../CustomDropDown/CustomSelect";
 
 const AddTutorClient = () => {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [selectMode, setSelectMode] = useState("");
+   const [inAddTutorForm, setInAddTutorForm] = useState(false); // Assuming this component is used in AddTutorForm, adjust as needed
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-
-    
+    e.preventDefault();   
     if (!selectedSubject || !selectMode) {
        toast.warning(`Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`);
       return;
     }
-
     const formData = new FormData(e.currentTarget);
     const tutor = Object.fromEntries(formData.entries());
 
@@ -73,7 +71,8 @@ if (res.ok) {
                 id="input-type-name"
                 name="name"
                 placeholder="Full name"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                 type="text"
                 required
               />
@@ -90,7 +89,8 @@ if (res.ok) {
                 id="input-type-image"
                 name="photo"
                 placeholder="https://image.com/..."
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                 type="url"
                 
               />
@@ -98,15 +98,22 @@ if (res.ok) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            {/* Added asterisks via standard labeling if your custom components accept them, or manage inside those components */}
-            <SubjectSelect
-              value={selectedSubject}
-              onChange={(subject) => setSelectedSubject(subject)}
-            />
-            <SelectTeachingMode
-              value={selectMode}
-              onChange={(mode) => setSelectMode(mode)}
-            />
+            
+            <CustomSelect
+  value={selectedSubject}
+  onChange={(val) => setSelectedSubject(val)}
+  options={["All subjects", "Mathematics", "Physics", "Chemistry", "Biology", "English", "History"]}
+  inAddTutorForm={inAddTutorForm}
+  setInAddTutorForm={setInAddTutorForm}
+/>
+            
+                   <CustomSelect
+  value={selectMode || "Mode"}
+  onChange={(val) => setSelectMode(val === "Mode" ? "" : val)}
+  options={["Mode", "Online", "Offline", "Both"]}
+  inAddTutorForm={inAddTutorForm}
+  setInAddTutorForm={setInAddTutorForm}
+/>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

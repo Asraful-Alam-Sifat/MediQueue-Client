@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import TutorCard from "@/Components/HOME/FeaturedTutors/TutorCard";
+import CustomSelect from "@/Components/CustomDropDown/CustomSelect";
+
 
 const TutorsClient = () => {
   const [tutors, setTutors] = useState([]);
@@ -12,7 +14,7 @@ const TutorsClient = () => {
   const [dateTo, setDateTo] = useState("");
 
   useEffect(() => {
-    const url = `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors`;
+    const url = `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors` || "http://localhost:5000/featured-tutors";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -69,38 +71,22 @@ const TutorsClient = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="flex-1 w-full sm:max-w-[250px] bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg
                            text-[#ccc] placeholder-[#666] text-sm px-4 py-2.5 outline-none
-                           focus:border-[#555]"
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
               />
               <div className="flex justify-around gap-5">
-                <select
-                  id="subject"
-                  value={selectedSubject}
-                  onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg text-[#ccc]
-                             text-sm px-4 py-2.5 outline-none cursor-pointer appearance-none
-                             focus:border-[#555]"
-                >
-                  <option value="">All subjects</option>
-                  <option value="Mathematics">Mathematics</option>
-                  <option value="Physics">Physics</option>
-                  <option value="Chemistry">Chemistry</option>
-                  <option value="Biology">Biology</option>
-                  <option value="English">English</option>
-                  <option value="History">History</option>
-                </select>
-                <select
-                  id="mode"
-                  value={selectedMode}
-                  onChange={(e) => setSelectedMode(e.target.value)}
-                  className="bg-[#2a2a2a] border border-[#3a3a3a] rounded-lg text-[#ccc]
-                             text-sm px-4 py-2.5 outline-none cursor-pointer appearance-none
-                             focus:border-[#555]"
-                >
-                  <option value="">Any mode</option>
-                  <option value="Online">Online</option>
-                  <option value="Offline">Offline</option>
-                  <option value="Both">Both</option>
-                </select>
+               <CustomSelect
+  value={selectedSubject || "All subjects"}
+  onChange={(val) => setSelectedSubject(val === "All subjects" ? "" : val)}
+  options={["All subjects", "Mathematics", "Physics", "Chemistry", "Biology", "English", "History"]}
+  inAddTutorForm={true} 
+/>
+
+                  <CustomSelect
+  value={selectedMode || "Mode"}
+  onChange={(val) => setSelectedMode(val === "Mode" ? "" : val)}
+  options={["Mode", "Online", "Offline", "Both"]}
+   inAddTutorForm={true} 
+/> 
               </div>
             </div>
             <span className="text-[#888] text-sm whitespace-nowrap">

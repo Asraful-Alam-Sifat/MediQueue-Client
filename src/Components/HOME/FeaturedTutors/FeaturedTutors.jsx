@@ -10,7 +10,7 @@ const FeaturedTutors = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_LIVE_URL}/featured-tutors` || "http://localhost:5000/featured-tutors")
+    fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors` || "http://localhost:5000/featured-tutors")
       .then((res) => res.json())
       .then((data) => {
         setTutors(data);

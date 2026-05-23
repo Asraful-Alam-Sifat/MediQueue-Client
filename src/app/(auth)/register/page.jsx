@@ -1,10 +1,15 @@
+
 import Logo from "@/assets/mediqueue-logo.png";
 import RegisterForm from "@/Components/Register/RegisterForm";
 import Image from "next/image";
 import Link from "next/link";
 import { TbBrandGoogle } from "react-icons/tb";
 
+
 const RegisterPage = () => {
+  
+  
+  
   return (
     <div className=" max-w-10/12 md:max-w-7/12 xl:max-w-4/12  mx-auto my-15 border-2 border-white/5 p-4 pt-8 sm:px-10 sm:py-10 group relative bg-[#13131A]/80 rounded-xl overflow-hidden transition-all duration-500 hover:border-[#4affc4]/20 hover:-translate-y-1 pb-5">
       <div

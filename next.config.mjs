@@ -7,15 +7,18 @@ images: {
       {
         protocol: 'https',
         hostname: 'api.dicebear.com',
-        port: '',
-        pathname: '/7.x/**',
+        
       },
       {
         protocol: 'https',
         hostname: 'i.ibb.co.com',
-        port: '',
-        pathname: '/**',
-      }
+        
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+        
+      },
     ],
   },
 };

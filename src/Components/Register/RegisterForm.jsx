@@ -14,37 +14,37 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const RegisterForm = () => {
-    const router = useRouter();
-  
-    const {
-      register,
-      handleSubmit,
-  
-      formState: { errors },
-    } = useForm();
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
 
   const handleRegisterFunc = async (data) => {
-  const { email, password, name, image } = data;
-  
-  const { data: responseData, error } = await authClient.signUp.email({
-    email,
-    password,
-    name,
-  });
+    const { email, password, name, image } = data;
 
-  if (error) {
-    toast.error(error.message || "Register failed!");
-    return;
-  }
+    const { data: responseData, error } = await authClient.signUp.email({
+      email,
+      password,
+      name,
+    });
 
-  if (image) {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    await authClient.updateUser({ image });
-  }
+    if (error) {
+      toast.error(error.message || "Register failed!");
+      return;
+    }
 
-  toast.success("Account created successfully! Redirecting...");
-  setTimeout(() => router.push("/login"), 2000);
-};
+    if (image) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      await authClient.updateUser({ image });
+    }
+
+    toast.success("Account created successfully! Redirecting...");
+    setTimeout(() => router.push("/login"), 2000);
+  };
 
   return (
     <div>
@@ -71,9 +71,9 @@ const RegisterForm = () => {
                   id="input-type-name"
                   placeholder="Username"
                   type="text"
-                      {...register("name", {
-                        required: "Username field is required",
-                      })}
+                  {...register("name", {
+                    required: "Username field is required",
+                  })}
                   className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                 />
 
@@ -82,8 +82,11 @@ const RegisterForm = () => {
                 </FieldError>
               </TextField>
 
-              <TextField className="w-full flex flex-col gap-1" isRequired
-                isInvalid={!!errors.image}>
+              <TextField
+                className="w-full flex flex-col gap-1"
+                isRequired
+                isInvalid={!!errors.image}
+              >
                 <Label
                   htmlFor="input-type-photo"
                   className="font-sans text-[#81819a] text-base"
@@ -96,7 +99,7 @@ const RegisterForm = () => {
                   type="url"
                   {...register("image", {
                     required: "Photo URL field is required",
-                  }) }
+                  })}
                   className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                 />
                 <FieldError className="text-xs text-red-300/80 mt-1">
@@ -144,9 +147,21 @@ const RegisterForm = () => {
               </div>
               <Input
                 id="input-type-password"
-                placeholder="Min 8 chars,upper + lowercase"
+                placeholder="Min 6 chars, upper + lowercase"
                 {...register("password", {
                   required: "Password field is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                  validate: {
+                    hasUppercase: (v) =>
+                      /[A-Z]/.test(v) ||
+                      "Must contain at least one uppercase letter",
+                    hasLowercase: (v) =>
+                      /[a-z]/.test(v) ||
+                      "Must contain at least one lowercase letter",
+                  },
                 })}
                 type="password"
                 required

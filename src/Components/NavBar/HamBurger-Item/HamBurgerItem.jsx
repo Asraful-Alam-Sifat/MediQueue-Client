@@ -1,0 +1,95 @@
+'use client';
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
+import Link from "next/link";
+
+const HamBurgerItem = () => {
+  const { data: session, refetch } = authClient.useSession();
+
+  return (
+    <div className="dropdown">
+      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden  ">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h8m-8 6h16"
+          />
+        </svg>
+      </div>
+
+      <ul
+        tabIndex={0}
+        className="menu menu-sm dropdown-content  rounded-box z-10 mt-3 w-52 py-3 border border-[#20DE8B]/20 bg-[#111118] shadow-2xl shadow-black/40"
+      >
+         <li >
+          <Link href="/tutors" className="font-sans text-base text-[#81819a] hover:text-white transition-colors duration-150">
+            Tutors
+          </Link>
+ </li>
+         <li>
+          <Link href="/add-tutor"  className="font-sans text-base text-[#81819a] hover:text-white transition-colors duration-150">
+            Add Tutor
+          </Link>
+  </li>
+         <li>
+          <Link href="/my-tutors"  className="font-sans text-base text-[#81819a] hover:text-white transition-colors duration-150">
+            My Tutors
+          </Link>
+  </li>
+        <li>
+          <Link href="/sessions" className="font-sans text-base text-[#81819a] hover:text-white transition-colors duration-150">
+            My Sessions
+          </Link>
+  </li>
+
+      {session?.user && (
+  <>
+    {/* User info - only on mobile */}
+    <div className="flex sm:hidden  ">
+      <div className="border-t border-white/10 mt-2.5 pt-2 px-3 w-full">
+        <p className="font-semibold text-white  mt-2.5 text-lg truncate">
+          {session.user.name}
+        </p>
+        <p className="text-[#81819a] text-xs truncate">
+          {session.user.email}
+        </p>
+      </div>
+    </div>
+
+    {/* Profile & Logout - only on mobile */}
+    <div className="flex sm:hidden w-full mt-1">
+      <ul className="w-full">
+        <li>
+          <Link href="/profile" className="font-sans text-sm text-[#81819a] hover:text-white hover:bg-white/5 rounded-lg px-3 py-2 transition-colors duration-150 flex items-center gap-2">
+            Profile
+          </Link>
+        </li>
+        <li>
+          <button
+            onClick={async () => {
+              await authClient.signOut();
+              refetch();
+            }}
+            className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-[#81819a] hover:text-red-400 hover:bg-red-500/10 text-sm transition-colors duration-150"
+          >
+            Log out
+          </button>
+        </li>
+      </ul>
+    </div>
+  </>
+)}
+      </ul>
+    </div>
+  );
+};
+
+export default HamBurgerItem;

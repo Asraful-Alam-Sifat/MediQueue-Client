@@ -1,18 +1,12 @@
-
 import Logo from "@/assets/mediqueue-logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
-import NavBarProfileIcon from "../NavBar-Profile-Icon/NavBarProfileIcon";
+import NavBarProfileIcon from "./NavBar-Profile-Icon/NavBarProfileIcon";
+import HamBurgerItem from "./HamBurger-Item/HamBurgerItem";
 
-const NavBar = async () => {
-  // ✅ returns session object directly, not { data, isPending }
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
 
-  // console.log("Session data in NavBar:", session);
+const NavBar =  () => {
+  
 
   return (
     <div
@@ -24,53 +18,8 @@ const NavBar = async () => {
     >
       {/* navbar-start */}
       <div className="navbar-start w-full sm:w-auto flex flex-row items-center justify-center sm:justify-start gap-2">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <Link
-              href={"/tutors"}
-              className="text-white/45 hover:text-white transition-all duration-150 text-xl capitalize"
-            >
-              <li className="font-sans">tutors</li>
-            </Link>
-            <Link
-              href={"/add-tutor"}
-              className="text-white/45 hover:text-white transition-all duration-150 text-xl capitalize"
-            >
-              <li className="font-sans">add tutor</li>
-            </Link>
-            <Link
-              href={"/my-tutors"}
-              className="text-white/45 hover:text-white transition-all duration-150 text-xl capitalize"
-            >
-              <li className="font-sans">my tutors</li>
-            </Link>
-            <Link
-              href={"/sessions"}
-              className="text-white/45 hover:text-white transition-all duration-150 text-xl capitalize"
-            >
-              <li className="font-sans">my sessions</li>
-            </Link>
-          </ul>
-        </div>
+        
+        <HamBurgerItem/>
 
         <Link href={"/"} className="flex items-end gap-1">
           <Image src={Logo} alt="logo" className="w-15" />
@@ -110,7 +59,7 @@ const NavBar = async () => {
         </ul>
       </div>
 
-      <NavBarProfileIcon/>
+      <NavBarProfileIcon />
     </div>
   );
 };

@@ -12,6 +12,8 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Link from "next/link";
+import { TbBrandGoogle } from "react-icons/tb";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -33,8 +35,19 @@ const RegisterForm = () => {
     });
 
     if (error) {
-      toast.error(error.message || "Register failed!");
-      return;
+        console.log("AUTH ERROR:", error);
+       const msg = error?.message?.toLowerCase() || "";
+
+    if (msg.includes("email") && msg.includes("exist")) {
+      toast.error("An account with this email already exists! Please sign in.");
+    } else if (msg.includes("password") && msg.includes("weak")) {
+      toast.error("Password is too weak. Use at least 8 characters.");
+    } else if (msg.includes("invalid") && msg.includes("email")) {
+      toast.error("Please enter a valid email address.");
+    } else {
+      toast.error(error.message || "Registration failed!");
+    }
+    return;
     }
 
     if (image) {
@@ -46,8 +59,45 @@ const RegisterForm = () => {
     setTimeout(() => router.push("/login"), 2000);
   };
 
+  const handleGoogleRegister = async () => {
+  try {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  } catch (error) {
+    const msg = error?.message?.toLowerCase() || "";
+    if (msg.includes("email") && msg.includes("exist")) {
+      toast.error("This Google account is already registered. Please sign in.");
+    } else {
+      toast.error(error.message || "Google sign-in failed!");
+    }
+  }
+};
+
   return (
     <div>
+       <div>
+                <Link
+          href={""}
+          onClick={ handleGoogleRegister}
+          className="sm:w-2/3 mx-auto border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] flex gap-1.5 px-10 py-2 mt-6 items-center justify-center"
+        >
+          <TbBrandGoogle className="text-red-500" />
+          <span className="text-xs sm:text-sm"> Continue with Google</span>
+        </Link>
+
+    </div>
+
+
+      <div className="grid grid-cols-3 items-center justify-evenly  my-6">
+        <span className="bg-[#5B5C77]/35 h-px w-full "></span>
+        <span className="text-center text-xs sm:text-sm font-light  text-[#5B5C77] capitalize ">
+          or register with email
+        </span>
+        <span className="bg-[#5B5C77]/35 h-px w-full"> </span>
+      </div>
+
       <Card className="w-full max-w-md bg-transparent p-2">
         <Card.Content>
           <form

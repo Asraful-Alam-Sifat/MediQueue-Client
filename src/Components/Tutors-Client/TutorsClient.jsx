@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import TutorCard from "@/Components/HOME/FeaturedTutors/TutorCard";
 import CustomSelect from "@/Components/CustomDropDown/CustomSelect";
 
+
 const TutorsClient = () => {
+
   const [tutors, setTutors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,6 +13,7 @@ const TutorsClient = () => {
   const [selectedMode, setSelectedMode] = useState("");
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
+  
 
   useEffect(() => {
     const url =
@@ -58,6 +61,8 @@ const TutorsClient = () => {
       </div>
     );
   }
+
+ 
 
   return (
     <div className="min-h-screen text-white">

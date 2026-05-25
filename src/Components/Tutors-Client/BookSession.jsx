@@ -7,12 +7,16 @@ import { LuCalendarPlus, LuX } from "react-icons/lu";
 import { toast } from "react-toastify";
 
 const BookSession = ({ tutor }) => {
+  const { data: session } = authClient.useSession();
+  
   const router = useRouter();
   const [studentName, setStudentName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { data: session } = authClient.useSession();
+  
+
+  
 
   const currentDate = new Date();
   const sessionStartDate = tutor?.startDate ? new Date(tutor.startDate) : null;
@@ -84,6 +88,10 @@ const BookSession = ({ tutor }) => {
     }
   };
 
+  if (!session){
+    router.push("/login");
+    return;
+  }
   return (
     <div>
       <div className="flex justify-center md:justify-start">

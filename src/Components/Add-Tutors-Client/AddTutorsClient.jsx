@@ -1,12 +1,15 @@
 "use client";
 import { Input, Label, Form, Button } from "@heroui/react";
 import { FaCheck } from "react-icons/fa6";
-
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import CustomSelect from "../CustomDropDown/CustomSelect";
 
 const AddTutorClient = () => {
+    const { data: session } = authClient.useSession();
+  const router = useRouter();
   const [selectedSubject, setSelectedSubject] = useState("");
   const [selectMode, setSelectMode] = useState("");
   const [inAddTutorForm, setInAddTutorForm] = useState(false);
@@ -48,6 +51,10 @@ const AddTutorClient = () => {
       toast.error(err.message || "Failed to add tutor");
     }
   };
+  if (!session){
+    router.push("/login");
+    return;
+  }
 
   return (
     <div className="max-w-11/12 sm:max-w-9/12 md:max-w-8/12 lg:max-w-7/12 mx-auto m-15 ">

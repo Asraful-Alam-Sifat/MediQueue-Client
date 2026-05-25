@@ -1,11 +1,11 @@
 import { connectDB } from "@/lib/mongodb";
-import TutorDetails from "@/Components/Tutor-Details/TutorDetails";
+
 import { Tutor } from "@/lib/models/Tutor";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
-import { LuCalendarPlus } from "react-icons/lu";
-import BookSession from "@/Components/My-Tutors-Client/BookSession";
+
+import BookSession from "@/Components/Tutors-Client/BookSession";
 
 export const generateMetadata = async ({ params }) => {
   const { id } = await params;

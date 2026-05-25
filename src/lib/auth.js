@@ -1,4 +1,3 @@
-// src/lib/auth.js
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { MongoClient } from "mongodb";
@@ -12,18 +11,13 @@ export const auth = betterAuth({
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      
     },
   },
-   databaseHooks: {
+  databaseHooks: {
     user: {
       create: {
         before: async (user) => {
-          // Check if this is an OAuth-created user
           if (user.emailVerified) {
-            // OAuth users are auto email-verified
-            // Check if they came from login page via a flag
-            // We'll handle this differently
           }
         },
       },

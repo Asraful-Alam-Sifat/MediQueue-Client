@@ -2,6 +2,8 @@
 @import "@heroui/styles";
 @plugin "daisyui";
 
+@source inline("text-yellow-500 underline text-white font-medium text-2xl transition-colors border-b-2 border-transparent hover:border-yellow-500");
+
 @layer utilities {
   .font-serif {
     font-family: var(--font-dm-serif), serif;

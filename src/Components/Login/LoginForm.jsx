@@ -42,29 +42,28 @@ const LoginForm = () => {
   };
 
   const handleGoogleLogin = async () => {
-  try {
-    // Redirect to special callback that checks if user is new
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/auth/google-login-callback", // ← special route
-    });
-  } catch (error) {
-    toast.error(error.message || "Google login failed!");
-  }
-};
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/auth/google-login-callback",
+      });
+    } catch (error) {
+      toast.error(error.message || "Google login failed!");
+    }
+  };
 
   return (
     <div>
-       <Link
-          href={""}
-          onClick={handleGoogleLogin}
-          className="sm:w-2/3 mx-auto border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] flex gap-1.5 px-10 py-2 mt-6 items-center justify-center"
-        >
-          <TbBrandGoogle className="text-red-500" />
-          <span className="text-xs sm:text-sm"> Continue with Google</span>
-        </Link>
+      <Link
+        href={""}
+        onClick={handleGoogleLogin}
+        className="sm:w-2/3 mx-auto border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] flex gap-1.5 px-10 py-2 mt-6 items-center justify-center"
+      >
+        <TbBrandGoogle className="text-red-500" />
+        <span className="text-xs sm:text-sm"> Continue with Google</span>
+      </Link>
 
-        <div className="grid grid-cols-3 items-center justify-evenly  my-6">
+      <div className="grid grid-cols-3 items-center justify-evenly  my-6">
         <span className="bg-[#5B5C77]/35 h-px w-full "></span>
         <span className="text-center text-xs sm:text-sm font-light  text-[#5B5C77] capitalize ">
           or sign in with email

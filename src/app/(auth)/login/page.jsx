@@ -42,12 +42,7 @@ const LoginPage = () => {
             Sign in to continue learning
           </p>
         </div>
-
-       
       </div>
-
-      
-
       <LoginForm />
       <p className="text-center text-sm sm:text-base  text-[#5B5C77]">
         No account?{" "}

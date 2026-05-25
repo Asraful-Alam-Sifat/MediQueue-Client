@@ -52,7 +52,7 @@ const HamBurgerItem = () => {
 
       {session?.user && (
   <>
-    {/* User info - only on mobile */}
+  
     <div className="flex sm:hidden  ">
       <div className="border-t border-white/10 mt-2.5 pt-2 px-3 w-full">
         <p className="font-semibold text-white  mt-2.5 text-lg truncate">
@@ -64,7 +64,6 @@ const HamBurgerItem = () => {
       </div>
     </div>
 
-    {/* Profile & Logout - only on mobile */}
     <div className="flex sm:hidden w-full mt-1">
       <ul className="w-full">
         <li>

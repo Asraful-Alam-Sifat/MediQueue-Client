@@ -8,7 +8,7 @@ export const authClient = createAuthClient({
       type: "string",
       required: false,
       defaultValue: null,
-      input: true, // ← this MUST be present
+      input: true, 
     },
   },
 },

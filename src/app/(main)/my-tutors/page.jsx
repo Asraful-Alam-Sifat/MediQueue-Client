@@ -1,10 +1,16 @@
+import MyTutorsClient from "@/Components/My-Tutors-Client/MyTutorsClient";
+
 export const metadata = {
-  title: "Mediqueue | My Tutors",
-  description: "Online Book Borrowing Platform ",
+  title: "My Tutors | MediQueue ",
+  description: "Online Book Borrowing Platform",
 };
 
-const MyTutorsPage = () => {
-  return <div></div>;
-};
 
-export default MyTutorsPage;
+
+export default async function MyTutorsPage() {
+  return (
+    <div>
+        <MyTutorsClient/>
+    </div>
+  )
+}

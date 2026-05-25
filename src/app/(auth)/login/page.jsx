@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Logo from "@/assets/mediqueue-logo.png";
-import { TbBrandGoogle } from "react-icons/tb";
-
 import Link from "next/link";
 import LoginForm from "@/Components/Login/LoginForm";
 

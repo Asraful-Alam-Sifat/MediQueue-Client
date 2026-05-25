@@ -35,19 +35,21 @@ const RegisterForm = () => {
     });
 
     if (error) {
-        console.log("AUTH ERROR:", error);
-       const msg = error?.message?.toLowerCase() || "";
+      
+      const msg = error?.message?.toLowerCase() || "";
 
-    if (msg.includes("email") && msg.includes("exist")) {
-      toast.error("An account with this email already exists! Please sign in.");
-    } else if (msg.includes("password") && msg.includes("weak")) {
-      toast.error("Password is too weak. Use at least 8 characters.");
-    } else if (msg.includes("invalid") && msg.includes("email")) {
-      toast.error("Please enter a valid email address.");
-    } else {
-      toast.error(error.message || "Registration failed!");
-    }
-    return;
+      if (msg.includes("email") && msg.includes("exist")) {
+        toast.error(
+          "An account with this email already exists! Please sign in.",
+        );
+      } else if (msg.includes("password") && msg.includes("weak")) {
+        toast.error("Password is too weak. Use at least 8 characters.");
+      } else if (msg.includes("invalid") && msg.includes("email")) {
+        toast.error("Please enter a valid email address.");
+      } else {
+        toast.error(error.message || "Registration failed!");
+      }
+      return;
     }
 
     if (image) {
@@ -60,35 +62,35 @@ const RegisterForm = () => {
   };
 
   const handleGoogleRegister = async () => {
-  try {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
-    });
-  } catch (error) {
-    const msg = error?.message?.toLowerCase() || "";
-    if (msg.includes("email") && msg.includes("exist")) {
-      toast.error("This Google account is already registered. Please sign in.");
-    } else {
-      toast.error(error.message || "Google sign-in failed!");
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (error) {
+      const msg = error?.message?.toLowerCase() || "";
+      if (msg.includes("email") && msg.includes("exist")) {
+        toast.error(
+          "This Google account is already registered. Please sign in.",
+        );
+      } else {
+        toast.error(error.message || "Google sign-in failed!");
+      }
     }
-  }
-};
+  };
 
   return (
     <div>
-       <div>
-                <Link
+      <div>
+        <Link
           href={""}
-          onClick={ handleGoogleRegister}
+          onClick={handleGoogleRegister}
           className="sm:w-2/3 mx-auto border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] flex gap-1.5 px-10 py-2 mt-6 items-center justify-center"
         >
           <TbBrandGoogle className="text-red-500" />
           <span className="text-xs sm:text-sm"> Continue with Google</span>
         </Link>
-
-    </div>
-
+      </div>
 
       <div className="grid grid-cols-3 items-center justify-evenly  my-6">
         <span className="bg-[#5B5C77]/35 h-px w-full "></span>
@@ -139,7 +141,7 @@ const RegisterForm = () => {
               >
                 <Label
                   htmlFor="input-type-photo"
-                  className="font-sans text-[#81819a] text-base"
+                  className="font-sans text-[#81819a] flex gap-0 text-base"
                 >
                   Photo URL
                 </Label>

@@ -23,7 +23,7 @@ const TutorsClient = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching tutors:", err);
+       
         setLoading(false);
       });
   }, []);

@@ -15,7 +15,7 @@ export default function GoogleLoginCallback() {
 
         if (!session?.user) {
           toast.error("Google login failed. Please try again.");
-          router.replace("/login"); 
+          router.replace("/login");
           return;
         }
 
@@ -36,7 +36,6 @@ export default function GoogleLoginCallback() {
         setTimeout(() => {
           toast.success("Welcome back!");
         }, 300);
-
       } catch (err) {
         router.replace("/login");
         setTimeout(() => {
@@ -52,7 +51,6 @@ export default function GoogleLoginCallback() {
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#191921]">
       <div className="flex flex-col items-center gap-4">
         <div className="w-10 h-full border-4 border-white/20 border-t-white rounded-full animate-spin flex justify-center items-center" />
-       
       </div>
     </div>
   );

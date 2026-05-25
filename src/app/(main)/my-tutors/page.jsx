@@ -5,12 +5,10 @@ export const metadata = {
   description: "Online Book Borrowing Platform",
 };
 
-
-
 export default async function MyTutorsPage() {
   return (
     <div>
-        <MyTutorsClient/>
+      <MyTutorsClient />
     </div>
-  )
+  );
 }

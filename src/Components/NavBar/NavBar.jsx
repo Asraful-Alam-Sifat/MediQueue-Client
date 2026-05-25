@@ -4,10 +4,7 @@ import Link from "next/link";
 import NavBarProfileIcon from "./NavBar-Profile-Icon/NavBarProfileIcon";
 import HamBurgerItem from "./HamBurger-Item/HamBurgerItem";
 
-
-const NavBar =  () => {
-  
-
+const NavBar = () => {
   return (
     <div
       className="navbar sticky top-0 z-50 border-b bg-transparent border-white/5 sm:px-10 py-4 flex-col sm:flex-row gap-y-4 justify-between"
@@ -18,8 +15,7 @@ const NavBar =  () => {
     >
       {/* navbar-start */}
       <div className="navbar-start w-full sm:w-auto flex flex-row items-center justify-center sm:justify-start gap-2">
-        
-        <HamBurgerItem/>
+        <HamBurgerItem />
 
         <Link href={"/"} className="flex items-end gap-1">
           <Image src={Logo} alt="logo" className="w-15" />
@@ -59,6 +55,7 @@ const NavBar =  () => {
         </ul>
       </div>
 
+      {/* Navbar end */}
       <NavBarProfileIcon />
     </div>
   );

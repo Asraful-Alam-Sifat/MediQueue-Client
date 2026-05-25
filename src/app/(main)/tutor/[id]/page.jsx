@@ -1,13 +1,11 @@
 import { connectDB } from "@/lib/mongodb";
 import TutorDetails from "@/Components/Tutor-Details/TutorDetails";
-import { Tutor } from '@/lib/models/Tutor';
+import { Tutor } from "@/lib/models/Tutor";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
 import { LuCalendarPlus } from "react-icons/lu";
 import BookSession from "@/Components/My-Tutors-Client/BookSession";
-
-
 
 export const generateMetadata = async ({ params }) => {
   const { id } = await params;
@@ -35,7 +33,7 @@ export const formatDate = (dateString) => {
 const TutorDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-         await connectDB();
+  await connectDB();
 
   const tutor = await Tutor.findById(id).lean();
 
@@ -43,8 +41,8 @@ const TutorDetailsPage = async ({ params }) => {
 
   const serializedTutor = JSON.parse(JSON.stringify(tutor));
 
-  return(
-     <div className="w-11/12 sm:max-w-9/12 mx-auto py-15">
+  return (
+    <div className="w-11/12 sm:max-w-9/12 mx-auto py-15">
       <Link
         href="/tutors"
         className="font-sans font-medium text-base capitalize text-[#9896AF] flex items-center gap-2 "
@@ -90,7 +88,9 @@ const TutorDetailsPage = async ({ params }) => {
             <span className="p-2 flex items-center gap-1.5 rounded-full border-2 border-[#292933] bg-[#1F1F2A]/40 px-4 py-2 text-[13px] font-medium text-[#8E91B0] transition-all duration-150  capitalize ">
               {tutor.location}
             </span>
-            <span className={`p-2 flex items-center gap-1.5 rounded-full border-2 px-4 py-2 text-[13px] font-medium text-[#4AFFC4] transition-all duration-150 hover:bg-[#4AFFC422] capitalize ${tutor.totalSlots <= 2 ? 'text-red-400 border-red-700/30 bg-red-600/15 ' : ''}`}>{`${tutor.totalSlots} slots left`}</span>
+            <span
+              className={`p-2 flex items-center gap-1.5 rounded-full border-2 px-4 py-2 text-[13px] font-medium text-[#4AFFC4] transition-all duration-150 hover:bg-[#4AFFC422] capitalize ${tutor.totalSlots <= 2 ? "text-red-400 border-red-700/30 bg-red-600/15 " : ""}`}
+            >{`${tutor.totalSlots} slots left`}</span>
           </div>
 
           <div className="flex flex-wrap justify-center md:justify-start gap-3">
@@ -146,7 +146,9 @@ const TutorDetailsPage = async ({ params }) => {
               <span className="text-xs uppercase text-[#585C77] font-sans tracking-wider block mb-1">
                 slots left
               </span>
-              <h2 className={`font-serif text-xl font-medium capitalize ${tutor.totalSlots <= 2 ? 'text-red-400' : 'text-white'}`}>
+              <h2
+                className={`font-serif text-xl font-medium capitalize ${tutor.totalSlots <= 2 ? "text-red-400" : "text-white"}`}
+              >
                 {tutor.totalSlots}
               </h2>
             </div>
@@ -203,8 +205,8 @@ const TutorDetailsPage = async ({ params }) => {
               </h2>
             </div>
           </div>
-          
-          <BookSession tutor={serializedTutor}/>
+
+          <BookSession tutor={serializedTutor} />
         </div>
       </div>
     </div>

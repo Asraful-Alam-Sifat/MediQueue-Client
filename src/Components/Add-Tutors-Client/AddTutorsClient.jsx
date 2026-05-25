@@ -40,7 +40,6 @@ const AddTutorClient = () => {
     );
 
     const data = await res.json();
-    // console.log(data);
 
     if (res.ok) {
       toast.success("Add tutor successfully");

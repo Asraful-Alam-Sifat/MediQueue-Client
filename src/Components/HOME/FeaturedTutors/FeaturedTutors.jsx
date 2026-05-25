@@ -20,7 +20,7 @@ const FeaturedTutors = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+       
         setLoading(false);
       });
   }, []);

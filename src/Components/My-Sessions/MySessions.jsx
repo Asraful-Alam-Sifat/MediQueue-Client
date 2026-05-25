@@ -33,7 +33,7 @@ const mockTutors = [
 const MySessions = () => {
     return (
         <div>
-            
+            <h1 className="text-2xl font-bold mb-4">My Sessions</h1>
         </div>
     );
 };

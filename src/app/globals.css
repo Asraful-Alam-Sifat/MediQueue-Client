@@ -19,7 +19,7 @@ body {
   font-family: var(--font-dm-sans), sans-serif;
 }
 
-body::before {
+body::before, .modalbook::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -27,4 +27,8 @@ body::before {
   opacity: 0.025;
   pointer-events: none;
   z-index: 9999;
+}
+
+.modalbook {
+  background-color: #13131A;
 }

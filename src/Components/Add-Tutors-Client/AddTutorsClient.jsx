@@ -14,23 +14,27 @@ const AddTutorClient = () => {
   const [selectMode, setSelectMode] = useState("");
   const [inAddTutorForm, setInAddTutorForm] = useState(false);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (!selectedSubject || !selectMode) {
-      toast.warning(
-        `Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`,
-      );
-      return;
-    }
-    const formData = new FormData(e.currentTarget);
-    const tutor = Object.fromEntries(formData.entries());
+ const onSubmit = async (e) => {
+  e.preventDefault();
+  if (!selectedSubject || !selectMode) {
+    toast.warning(
+      `Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`,
+    );
+    return;
+  }
+  const formData = new FormData(e.currentTarget);
+  const tutor = Object.fromEntries(formData.entries());
 
-    const fullTutorData = {
-      ...tutor,
-      subject: selectedSubject,
-      teachingMode: selectMode,
-    };
+  const fullTutorData = {
+    ...tutor,
+    subject: selectedSubject,
+    teachingMode: selectMode,
+    userEmail: session?.user?.email,
+    photo: tutor.photo?.trim() === "" ? null : tutor.photo,
+  };
 
+  try {
+    // FIX 1: Pointing to /add-tutor endpoint
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/add-tutor`,
       {
@@ -42,15 +46,24 @@ const AddTutorClient = () => {
       },
     );
 
-    const data = await res.json();
+    const data = await res.json(); // Read stream exactly once
 
     if (res.ok) {
       toast.success("Add tutor successfully");
+      e.target.reset(); // Clears form inputs
+      setSelectedSubject("");
+      setSelectMode("");
     } else {
-      const err = await res.json();
-      toast.error(err.message || "Failed to add tutor");
+      // FIX 2: Using already parsed 'data' instead of invoking res.json() again
+      toast.error(data.message || "Failed to add tutor");
     }
-  };
+  } catch (error) {
+    console.error("Submission error:", error);
+    toast.error("An expected error occurred while saving.");
+  }
+};
+
+
   if (!session){
     router.push("/login");
     return;

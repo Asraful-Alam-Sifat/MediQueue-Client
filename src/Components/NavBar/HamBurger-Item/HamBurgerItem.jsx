@@ -54,14 +54,14 @@ const HamBurgerItem = () => {
         </li>
         <li>
           <Link
-            href="/sessions"
+            href="/my-sessions"
             className="font-sans text-base text-[#81819a] hover:text-white transition-colors duration-150"
           >
             My Sessions
           </Link>
         </li>
 
-        {session?.user && (
+        {session?.user ? (
           <>
             <div className="flex sm:hidden  ">
               <div className="border-t border-white/10 mt-2.5 pt-2 px-3 w-full">
@@ -98,6 +98,22 @@ const HamBurgerItem = () => {
               </ul>
             </div>
           </>
+        ) : (
+           <div className=" ">
+            <Link
+              href={"/login"}
+              className="inline-flex items-center gap-1.5 rounded-[10px] border px-4 py-2 text-[13px] font-medium bg-[#4AFFC41A]  text-[#4AFFC4] border-[#4AFFC422]  transition-all duration-150 hover:bg-[#4AFFC422] capitalize w-full justify-center mb-2"
+            >
+              sign in
+            </Link>
+            <Link
+              href={"/register"}
+              className="inline-flex items-center gap-1.5 rounded-[10px] border border-[#0DBF82] bg-[#0DBF82] px-4 py-2 text-[13px] font-semibold text-[#081A12] transition-all duration-150 hover:border-[#2DE8A8] hover:bg-[#2DE8A8] capitalize w-full justify-center"
+              style={{ boxShadow: "0 0 20px rgba(74,255,196,0.133)" }}
+            >
+              register free
+            </Link>
+          </div>
         )}
       </ul>
     </div>

@@ -47,7 +47,7 @@ const NavBar = () => {
             <li className="font-sans">my tutors</li>
           </Link>
           <Link
-            href={"/sessions"}
+            href={"/my-sessions"}
             className="text-white/45 hover:text-white transition-all duration-150 text-xl capitalize"
           >
             <li className="font-sans">my sessions</li>

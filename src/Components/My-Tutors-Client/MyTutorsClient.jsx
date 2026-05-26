@@ -55,7 +55,86 @@ const MyTutorsClient = () => {
     fetchMyTutors();
   }, [session]);
 
+  // Handle opening Delete Modal
+  const openDeleteModal = (tutor) => {
+    setActiveTutor(tutor);
+    setIsDeleteModalOpen(true);
+  };
 
+  // Handle Confirming Delete Operation
+  const handleDeleteConfirm = async () => {
+    if (!activeTutor?._id) return;
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors/${activeTutor._id}`,
+        { method: "DELETE" },
+      );
+
+      if (res.ok) {
+        toast.success("Tutor listing deleted successfully");
+        setTutors(tutors.filter((t) => t._id !== activeTutor._id));
+      } else {
+        toast.error("Failed to delete entry");
+      }
+    } catch (err) {
+      toast.error("An expected error occurred");
+    } finally {
+      setIsDeleteModalOpen(false);
+      setActiveTutor(null);
+    }
+  };
+
+  // Handle opening Edit Modal
+  const openEditModal = (tutor) => {
+    setActiveTutor(tutor);
+    setEditName(tutor.name || "");
+    setEditSubject(tutor.subject || "");
+    setEditPrice(tutor.pricePerHour || tutor.fee || "");
+    setEditSlots(tutor.totalSlots || tutor.slots || "");
+    setEditMode(tutor.teachingMode || tutor.mode || "Online");
+    setEditPhoto(tutor.photo || "");
+    setIsEditModalOpen(true);
+  };
+
+  // Handle Submitting Edit Changes
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    if (!activeTutor?._id) return;
+
+    const updatedPayload = {
+      name: editName,
+      subject: editSubject,
+      pricePerHour: Number(editPrice),
+      totalSlots: Number(editSlots),
+      teachingMode: editMode,
+      photo: editPhoto,
+    };
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors/${activeTutor._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedPayload),
+        },
+      );
+
+      if (res.ok) {
+        toast.success("Tutor updated successfully");
+        setTutors(
+          tutors.map((t) =>
+            t._id === activeTutor._id ? { ...t, ...updatedPayload } : t,
+          ),
+        );
+        setIsEditModalOpen(false);
+      } else {
+        toast.error("Failed to update profile changes");
+      }
+    } catch (err) {
+      toast.error("Server connection lost");
+    }
+  };
 
   if (isPending || loadingTutors) {
     return (
@@ -257,6 +336,175 @@ const MyTutorsClient = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/*  EMPTY STATE VIEW */}
+
+      {tutors.length === 0 && (
+        <div className="flex flex-col items-center justify-center py-20 max-w-7xl mx-auto bg-[#13171d] border border-white/10 rounded-2xl shadow-xl">
+          <p className="text-gray-400 text-lg font-medium">
+            No tutors created yet
+          </p>
+          <button
+            onClick={() => router.push("/add-tutor")}
+            className="mt-5 px-6 py-2.5 rounded-xl bg-[#2DE8A8] text-black font-semibold hover:opacity-90 transition shadow-lg shadow-[#2DE8A8]/10"
+          >
+            Create Tutor
+          </button>
+        </div>
+      )}
+
+      {/* EDIT MODAL  */}
+
+      {isEditModalOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+          <div className="bg-[#191921] border border-white/10 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden p-6 relative text-white">
+            <button
+              onClick={() => setIsEditModalOpen(false)}
+              className="absolute top-4 right-4 p-1.5 text-gray-400 hover:text-white hover:bg-white/15 rounded-lg transition"
+            >
+              <RiCloseLine className="w-6 h-6" />
+            </button>
+
+            <h2 className="text-xl font-semibold font-serif text-white mb-4">
+              Update Tutor Specifications
+            </h2>
+
+            <form onSubmit={handleEditSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs text-gray-400 font-medium mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs text-gray-400 font-medium mb-1">
+                  Subject Matter
+                </label>
+                <input
+                  type="text"
+                  value={editSubject}
+                  onChange={(e) => setEditSubject(e.target.value)}
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs text-gray-400 font-medium mb-1">
+                    Price per Hour (৳)
+                  </label>
+                  <input
+                    type="number"
+                    value={editPrice}
+                    onChange={(e) => setEditPrice(e.target.value)}
+                    className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-400 font-medium mb-1">
+                    Available Slots
+                  </label>
+                  <input
+                    type="number"
+                    value={editSlots}
+                    onChange={(e) => setEditSlots(e.target.value)}
+                    className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs text-gray-400 font-medium mb-1">
+                  Teaching Delivery Mode
+                </label>
+                <select
+                  value={editMode}
+                  onChange={(e) => setEditMode(e.target.value)}
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                >
+                  <option value="Online">Online</option>
+                  <option value="Offline">Offline</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs text-gray-400 font-medium mb-1">
+                  Avatar Image URL (Optional)
+                </label>
+                <input
+                  type="url"
+                  value={editPhoto}
+                  onChange={(e) => setEditPhoto(e.target.value)}
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                  placeholder="https://example.com/photo.jpg"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="px-4 py-2 rounded-xl text-sm border border-white/10 hover:bg-white/5 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl text-sm bg-[#2DE8A8] text-black font-semibold hover:opacity-90 transition"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* DELETE CONFIRMATION MODAL */}
+
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+          <div className="bg-[#191921] border border-white/10 w-full max-w-sm rounded-2xl shadow-2xl p-6 text-center text-white">
+            <div className="w-12 h-12 bg-red-500/10 text-red-400 border border-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <RiDeleteBin6Line className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-medium text-white">
+              Remove Tutor Profile?
+            </h3>
+            <p className="text-sm text-gray-400 mt-2">
+              Are you sure you want to delete{" "}
+              <span className="text-gray-200 font-medium">
+                "{activeTutor?.name}"
+              </span>
+              ? This action is permanent.
+            </p>
+            <div className="flex items-center justify-center gap-3 mt-6">
+              <button
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="px-4 py-2 rounded-xl text-sm border border-white/10 hover:bg-white/5 transition flex-1"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDeleteConfirm}
+                className="px-4 py-2 rounded-xl text-sm bg-red-500 border border-red-600 text-white font-medium hover:bg-red-600 transition flex-1"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

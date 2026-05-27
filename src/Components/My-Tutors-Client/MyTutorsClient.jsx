@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-
 const MyTutorsClient = () => {
   const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
@@ -56,13 +55,11 @@ const MyTutorsClient = () => {
     fetchMyTutors();
   }, [session]);
 
-  // Handle opening Delete Modal
   const openDeleteModal = (tutor) => {
     setActiveTutor(tutor);
     setIsDeleteModalOpen(true);
   };
 
-  // Handle Confirming Delete Operation
   const handleDeleteConfirm = async () => {
     if (!activeTutor?._id) return;
     try {
@@ -85,7 +82,6 @@ const MyTutorsClient = () => {
     }
   };
 
-  // Handle opening Edit Modal
   const openEditModal = (tutor) => {
     setActiveTutor(tutor);
     setEditName(tutor.name || "");
@@ -97,7 +93,6 @@ const MyTutorsClient = () => {
     setIsEditModalOpen(true);
   };
 
-  // Handle Submitting Edit Changes
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     if (!activeTutor?._id) return;
@@ -222,17 +217,31 @@ const MyTutorsClient = () => {
                     </td>
 
                     <td className="py-4 px-6 hidden lg:table-cell">
-                      <span
-                        className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border
-                        ${
-                          tutor.teachingMode === "Online" ||
-                          tutor.mode === "Online"
-                            ? "bg-[#2DE8A8]/20 text-[#2DE8A8] border-[#2DE8A8]/30"
-                            : "bg-[#E94E77]/20 text-[#E94E77] border-[#E94E77]/30"
-                        }`}
-                      >
-                        {tutor.teachingMode || tutor.mode}
-                      </span>
+                      {(() => {
+                        const mode = (tutor.teachingMode || "")
+                          .toLowerCase()
+                          .trim();
+
+                        if (mode === "online") {
+                          return (
+                            <span className="px-4 py-2 text-[13px] font-medium rounded-full border-2 border-emerald-500/20 bg-emerald-500/10 text-emerald-400 backdrop-blur-sm shadow-[0_0_15px_rgba(16,185,129,0.05)] capitalize">
+                              ● Online
+                            </span>
+                          );
+                        } else if (mode === "offline") {
+                          return (
+                            <span className="px-4 py-2 text-[13px] font-medium rounded-full border-2 border-blue-500/20 bg-blue-500/10 text-blue-400 backdrop-blur-sm shadow-[0_0_15px_rgba(59,130,246,0.05)] capitalize">
+                              ■ Offline
+                            </span>
+                          );
+                        } else {
+                          return (
+                            <span className="px-4 py-2 text-[13px] font-medium rounded-full border-2 border-purple-500/20 bg-purple-500/10 text-purple-400 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.05)] capitalize">
+                              ◆ Online & Offline
+                            </span>
+                          );
+                        }
+                      })()}
                     </td>
 
                     <td className="py-4 px-6">
@@ -445,7 +454,7 @@ const MyTutorsClient = () => {
                   <option value="Offline">Offline</option>
                 </select>
               </div>
-        
+
               <div>
                 <label className="block text-xs text-gray-400 font-medium mb-1">
                   Avatar Image URL (Optional)

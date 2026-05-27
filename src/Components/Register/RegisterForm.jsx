@@ -35,7 +35,6 @@ const RegisterForm = () => {
     });
 
     if (error) {
-      
       const msg = error?.message?.toLowerCase() || "";
 
       if (msg.includes("email") && msg.includes("exist")) {

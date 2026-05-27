@@ -58,7 +58,7 @@ const handleBookingSubmit = async (e) => {
   };
 
   try {
-    // 1. Submit the main booking document
+  
     const response = await fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
@@ -71,27 +71,26 @@ const handleBookingSubmit = async (e) => {
 
     if (response.ok && responseData.insertedId) {
       
-      // 2. NEW: Decrease totalSlots on the tutor's database record
+     
       try {
         await fetch(`http://localhost:5000/tutors/${tutor._id}/decrease-slots`, {
           method: "PATCH",
         });
       } catch (slotError) {
         console.error("Failed to update backend slots:", slotError);
-        // We log it but don't crash the success flow for the user's booking screen
+       
       }
 
       toast.success(`Booking Successful! Your token is ${bookingPayload.token}`, {
         toastId: "booking-success-toast",
-  autoClose: 3000, // Explicitly forces a 3-second auto-close timeout
+  autoClose: 3000, 
 });
       
       setStudentName("");
       setPhoneNumber("");
       document.getElementById("my_modal_5").close();
       
-      // 3. Refresh the page so the details view slots count changes visually right away
-      // router.refresh(); 
+       
       router.push("/my-sessions");
       
     } else {

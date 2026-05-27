@@ -99,7 +99,7 @@ const HamBurgerItem = () => {
             </div>
           </>
         ) : (
-           <div className=" ">
+          <div className=" ">
             <Link
               href={"/login"}
               className="inline-flex items-center gap-1.5 rounded-[10px] border px-4 py-2 text-[13px] font-medium bg-[#4AFFC41A]  text-[#4AFFC4] border-[#4AFFC422]  transition-all duration-150 hover:bg-[#4AFFC422] capitalize w-full justify-center mb-2"

@@ -10,7 +10,8 @@ const FeaturedTutors = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const baseUrl = process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL || "http://localhost:5000";
+    const baseUrl =
+      process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL || "http://localhost:5000";
     fetch(`${baseUrl}/featured-tutors`)
       .then((res) => res.json())
       .then((data) => {
@@ -18,12 +19,10 @@ const FeaturedTutors = () => {
         setLoading(false);
       })
       .catch((err) => {
-       
         setLoading(false);
       });
   }, []);
 
-  // console.log("Featured Tutors data", tutors)
   if (loading)
     return (
       <p className="text-center py-10">
@@ -35,7 +34,6 @@ const FeaturedTutors = () => {
     <div className="max-w-11/12 mx-auto py-15">
       <div>
         <h3 className="font-sans text-[#2DE8A8] uppercase font-medium ">
-          
           featured
         </h3>
         <h1 className="font-serif text-4xl capitalize my-3">

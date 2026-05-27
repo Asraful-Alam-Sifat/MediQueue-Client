@@ -8,63 +8,60 @@ import { toast } from "react-toastify";
 import CustomSelect from "../CustomDropDown/CustomSelect";
 
 const AddTutorClient = () => {
-    const { data: session } = authClient.useSession();
+  const { data: session } = authClient.useSession();
   const router = useRouter();
   const [selectedSubject, setSelectedSubject] = useState("");
   const [selectMode, setSelectMode] = useState("");
   const [inAddTutorForm, setInAddTutorForm] = useState(false);
 
- const onSubmit = async (e) => {
-  e.preventDefault();
-  if (!selectedSubject || !selectMode) {
-    toast.warning(
-      `Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`,
-    );
-    return;
-  }
-  const formData = new FormData(e.currentTarget);
-  const tutor = Object.fromEntries(formData.entries());
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!selectedSubject || !selectMode) {
+      toast.warning(
+        `Please select a ${!selectedSubject ? "subject" : "Teaching mode"} .`,
+      );
+      return;
+    }
+    const formData = new FormData(e.currentTarget);
+    const tutor = Object.fromEntries(formData.entries());
 
-  const fullTutorData = {
-    ...tutor,
-    subject: selectedSubject,
-    teachingMode: selectMode,
-    userEmail: session?.user?.email,
-    photo: tutor.photo?.trim() === "" ? null : tutor.photo,
+    const fullTutorData = {
+      ...tutor,
+      subject: selectedSubject,
+      teachingMode: selectMode,
+      userEmail: session?.user?.email,
+      photo: tutor.photo?.trim() === "" ? null : tutor.photo,
+    };
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/add-tutor`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(fullTutorData),
+        },
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success("Add tutor successfully");
+        e.target.reset();
+        setSelectedSubject("");
+        setSelectMode("");
+      } else {
+        toast.error(data.message || "Failed to add tutor");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("An expected error occurred while saving.");
+    }
   };
 
-  try {
-    
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/add-tutor`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(fullTutorData),
-      },
-    );
-
-    const data = await res.json(); 
-
-    if (res.ok) {
-      toast.success("Add tutor successfully");
-      e.target.reset(); 
-      setSelectedSubject("");
-      setSelectMode("");
-    } else {
- 
-      toast.error(data.message || "Failed to add tutor");
-    }
-  } catch (error) {
-    console.error("Submission error:", error);
-    toast.error("An expected error occurred while saving.");
-  }
-};
-
-
-  if (!session){
+  if (!session) {
     router.push("/login");
     return;
   }

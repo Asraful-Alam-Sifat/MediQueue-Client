@@ -21,40 +21,38 @@ const MySessionsClient = () => {
     }
   }, [session, isPending, router]);
 
-// ...existing code...
-useEffect(() => {
-  if (!session?.user?.email) return;
+  useEffect(() => {
+    if (!session?.user?.email) return;
 
-  let isMounted = true;
+    let isMounted = true;
 
-  const fetchBookings = async () => {
-    if (!isMounted) return;
-    setLoadingBookings(true);
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/bookings`
-      );
-      if (!res.ok) {
-        toast.error("Failed to load booked sessions");
-        return;
-      }
-      const data = await res.json();
+    const fetchBookings = async () => {
       if (!isMounted) return;
-      const myData = data.filter((b) => b.email === session.user.email);
-      setBookings(myData);
-    } catch (error) {
-      if (isMounted) console.error("Error fetching bookings:", error);
-    } finally {
-      if (isMounted) setLoadingBookings(false);
-    }
-  };
+      setLoadingBookings(true);
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/bookings`,
+        );
+        if (!res.ok) {
+          toast.error("Failed to load booked sessions");
+          return;
+        }
+        const data = await res.json();
+        if (!isMounted) return;
+        const myData = data.filter((b) => b.email === session.user.email);
+        setBookings(myData);
+      } catch (error) {
+        if (isMounted) console.error("Error fetching bookings:", error);
+      } finally {
+        if (isMounted) setLoadingBookings(false);
+      }
+    };
 
-  fetchBookings();
-  return () => {
-    isMounted = false;
-  };
-}, [session]);
-// ...existing code...
+    fetchBookings();
+    return () => {
+      isMounted = false;
+    };
+  }, [session]);
 
   const openCancelModal = (booking) => {
     setActiveBooking(booking);
@@ -206,21 +204,21 @@ useEffect(() => {
             >
               <div className="flex items-center gap-3">
                 <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-gray-700 shrink-0">
-  <Image
-    src={
-      booking.tutorPhoto && booking.tutorPhoto.trim() !== ""
-        ? booking.tutorPhoto
-        : `https://api.dicebear.com/7.x/open-peeps/svg?seed=${encodeURIComponent(
-            booking.tutorName || "Tutor"
-          )}`
-    }
-    width={40}
-    height={40}
-    alt={booking.tutorName || "Tutor"}
-    className="object-cover w-full h-full"
-    unoptimized
-  />
-</div>
+                  <Image
+                    src={
+                      booking.tutorPhoto && booking.tutorPhoto.trim() !== ""
+                        ? booking.tutorPhoto
+                        : `https://api.dicebear.com/7.x/open-peeps/svg?seed=${encodeURIComponent(
+                            booking.tutorName || "Tutor",
+                          )}`
+                    }
+                    width={40}
+                    height={40}
+                    alt={booking.tutorName || "Tutor"}
+                    className="object-cover w-full h-full"
+                    unoptimized
+                  />
+                </div>
                 <div className="flex-1">
                   <h2 className="text-white font-semibold text-base">
                     {booking.tutorName}

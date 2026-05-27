@@ -40,10 +40,10 @@ const TutorDetailsPage = async ({ params }) => {
   if (!tutor) return <div>Tutor not found</div>;
 
   const serializedTutor = {
-  ...JSON.parse(JSON.stringify(tutor)),
-  _id: tutor._id.toString(),
-  startDate: tutor.startDate ? new Date(tutor.startDate).toISOString() : null,
-};
+    ...JSON.parse(JSON.stringify(tutor)),
+    _id: tutor._id.toString(),
+    startDate: tutor.startDate ? new Date(tutor.startDate).toISOString() : null,
+  };
 
   return (
     <div className="w-11/12 sm:max-w-9/12 mx-auto py-15">
@@ -55,24 +55,21 @@ const TutorDetailsPage = async ({ params }) => {
         back to tutors
       </Link>
       <div className="max-w-12/12 grid grid-cols-1 md:grid-cols-3 p-3 py-5 gap-5 mx-auto bg-[#13131A]/80 border-2 border-white/5 rounded-xl mt-10">
-
-<div className="relative w-44 h-44 mx-auto mt-6 rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_25px_rgba(74,255,196,0.08)] col-span-1">
-  <Image
-    src={
-      serializedTutor.photo ||
-      `https://api.dicebear.com/7.x/open-peeps/svg?seed=${
-        encodeURIComponent(
-          serializedTutor.name || "Tutor"
-        )
-      }`
-    }
-    alt={`${serializedTutor.name || "Tutor"} avatar`}
-    fill
-    sizes="176px"
-    className="object-cover transition-transform duration-500 group-hover:scale-110"
-    unoptimized
-  />
-</div>
+        <div className="relative w-44 h-44 mx-auto mt-6 rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_25px_rgba(74,255,196,0.08)] col-span-1">
+          <Image
+            src={
+              serializedTutor.photo ||
+              `https://api.dicebear.com/7.x/open-peeps/svg?seed=${encodeURIComponent(
+                serializedTutor.name || "Tutor",
+              )}`
+            }
+            alt={`${serializedTutor.name || "Tutor"} avatar`}
+            fill
+            sizes="176px"
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            unoptimized
+          />
+        </div>
 
         <div className="col-span-2 flex flex-col justify-center">
           <div className=" py-4 space-y-1.5">

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
+
 const MyTutorsClient = () => {
   const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
@@ -380,7 +381,8 @@ const MyTutorsClient = () => {
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                   required
                 />
               </div>
@@ -393,7 +395,8 @@ const MyTutorsClient = () => {
                   type="text"
                   value={editSubject}
                   onChange={(e) => setEditSubject(e.target.value)}
-                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                   required
                 />
               </div>
@@ -407,7 +410,8 @@ const MyTutorsClient = () => {
                     type="number"
                     value={editPrice}
                     onChange={(e) => setEditPrice(e.target.value)}
-                    className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                    className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:outline-none outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                     required
                   />
                 </div>
@@ -419,7 +423,8 @@ const MyTutorsClient = () => {
                     type="number"
                     value={editSlots}
                     onChange={(e) => setEditSlots(e.target.value)}
-                    className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                    className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200 text-sm"
                     required
                   />
                 </div>
@@ -432,13 +437,15 @@ const MyTutorsClient = () => {
                 <select
                   value={editMode}
                   onChange={(e) => setEditMode(e.target.value)}
-                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200 text-sm"
                 >
+                  <option value="Offline">Both</option>
                   <option value="Online">Online</option>
                   <option value="Offline">Offline</option>
                 </select>
               </div>
-
+        
               <div>
                 <label className="block text-xs text-gray-400 font-medium mb-1">
                   Avatar Image URL (Optional)
@@ -447,7 +454,8 @@ const MyTutorsClient = () => {
                   type="url"
                   value={editPhoto}
                   onChange={(e) => setEditPhoto(e.target.value)}
-                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#2DE8A8] text-sm"
+                  className="w-full bg-[#13131A] border border-white/10 rounded-xl px-4 py-2.5 focus:outline-none outline-none
+                           focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200 text-sm"
                   placeholder="https://example.com/photo.jpg"
                 />
               </div>

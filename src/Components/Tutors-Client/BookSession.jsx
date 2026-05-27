@@ -33,60 +33,76 @@ const BookSession = ({ tutor }) => {
     return `MQ-${randomChars}`;
   };
 
-  const handleBookingSubmit = async (e) => {
-    e.preventDefault();
+const handleBookingSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!session || !session.user) {
-      document.getElementById("my_modal_5").close();
+  if (!session || !session.user) {
+    document.getElementById("my_modal_5").close();
+    router.push("/login");
+    return;
+  }
 
-      router.push("/login");
-      return;
-    }
+  if (isBookingDisabled) return;
+  setIsSubmitting(true);
 
-    if (isBookingDisabled) return;
-    setIsSubmitting(true);
-
-    const bookingPayload = {
-      tutorName: tutor?.name || "Unknown Tutor",
-      studentName: studentName,
-      email: session.user.email,
-      phone: phoneNumber,
-      token: generateToken(),
-      status: "pending",
-      tutorId: tutor?._id,
-      subject: tutor?.subject || "General",
-    };
-
-    try {
-      // console.log("Sending data to booking API:", bookingPayload);
-
-      const response = await fetch("http://localhost:5000/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookingPayload),
-      });
-
-      const responseData = await response.json();
-
-      if (response.ok && responseData.insertedId) {
-        toast.success(
-          `Booking Successful! Your token is ${bookingPayload.token}`,
-        );
-        setStudentName("");
-        setPhoneNumber("");
-        document.getElementById("my_modal_5").close();
-      } else {
-        throw new Error(responseData.message || "Failed to submit booking");
-      }
-    } catch (error) {
-      // console.error("Booking failed:", error);
-      toast.error(error.message || "Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+  const bookingPayload = {
+    tutorName: tutor?.name || "Unknown Tutor",
+    tutorPhoto: tutor?.photo || "",
+    studentName: studentName,
+    email: session.user.email,
+    phone: phoneNumber,
+    token: generateToken(),
+    status: "pending",
+    tutorId: tutor?._id,
+    subject: tutor?.subject || "General",
   };
+
+  try {
+    // 1. Submit the main booking document
+    const response = await fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingPayload),
+    });
+
+    const responseData = await response.json();
+
+    if (response.ok && responseData.insertedId) {
+      
+      // 2. NEW: Decrease totalSlots on the tutor's database record
+      try {
+        await fetch(`http://localhost:5000/tutors/${tutor._id}/decrease-slots`, {
+          method: "PATCH",
+        });
+      } catch (slotError) {
+        console.error("Failed to update backend slots:", slotError);
+        // We log it but don't crash the success flow for the user's booking screen
+      }
+
+      toast.success(`Booking Successful! Your token is ${bookingPayload.token}`, {
+        toastId: "booking-success-toast",
+  autoClose: 3000, // Explicitly forces a 3-second auto-close timeout
+});
+      
+      setStudentName("");
+      setPhoneNumber("");
+      document.getElementById("my_modal_5").close();
+      
+      // 3. Refresh the page so the details view slots count changes visually right away
+      // router.refresh(); 
+      router.push("/my-sessions");
+      
+    } else {
+      throw new Error(responseData.message || "Failed to submit booking");
+    }
+  } catch (error) {
+    toast.error(error.message || "Something went wrong. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   if (!session){
     router.push("/login");

@@ -40,7 +40,7 @@ const CustomSelect = ({ value, onChange, options, inAddTutorForm = false }) => {
         type="button"
         onClick={() => setOpen(!open)}
         className={`w-full flex items-center justify-between rounded-lg px-3 py-2 cursor-pointer focus:outline-none transition-all duration-200
-    bg-[#191921] border border-white/10 text-white focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 min-w-[140px]`}
+    bg-[#13131A] border border-white/10 text-white focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 min-w-[140px]`}
       >
         <span className={value ? "text-white" : "text-[#4c4b6b]"}>
           {value || options[0]}

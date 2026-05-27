@@ -34,7 +34,7 @@ const AddTutorClient = () => {
   };
 
   try {
-    // FIX 1: Pointing to /add-tutor endpoint
+    
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/add-tutor`,
       {
@@ -46,15 +46,15 @@ const AddTutorClient = () => {
       },
     );
 
-    const data = await res.json(); // Read stream exactly once
+    const data = await res.json(); 
 
     if (res.ok) {
       toast.success("Add tutor successfully");
-      e.target.reset(); // Clears form inputs
+      e.target.reset(); 
       setSelectedSubject("");
       setSelectMode("");
     } else {
-      // FIX 2: Using already parsed 'data' instead of invoking res.json() again
+ 
       toast.error(data.message || "Failed to add tutor");
     }
   } catch (error) {
@@ -81,7 +81,7 @@ const AddTutorClient = () => {
         </p>
       </div>
 
-      <div className="bg-[#13131A] p-7 rounded-2xl border-2 border-white/5 mt-6 ">
+      <div className="bg-[#191921] p-7 rounded-2xl border-2 border-white/5 mt-6 ">
         <Form onSubmit={onSubmit} className="mt-4 ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="flex flex-col gap-1  ">
@@ -95,7 +95,7 @@ const AddTutorClient = () => {
                 id="input-type-name"
                 name="name"
                 placeholder="Full name"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] outline-none
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A] outline-none
                            focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                 type="text"
                 required
@@ -113,7 +113,7 @@ const AddTutorClient = () => {
                 id="input-type-image"
                 name="photo"
                 placeholder="https://image.com/..."
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921] outline-none
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A] outline-none
                            focus:border-[#20DE8B] focus:ring-2 focus:ring-[#20DE8B]/30 transition-all duration-200"
                 type="url"
               />
@@ -158,7 +158,7 @@ const AddTutorClient = () => {
                 id="input-type-available-days"
                 name="availableDays"
                 placeholder="Sun - Thu"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="text"
               />
             </div>
@@ -174,7 +174,7 @@ const AddTutorClient = () => {
                 id="input-type-time"
                 name="timeSlot"
                 placeholder="5:00 PM - 8:00 PM"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="text"
               />
             </div>
@@ -192,7 +192,7 @@ const AddTutorClient = () => {
                 id="input-type-fee"
                 name="pricePerHour"
                 placeholder="500"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="number"
                 required
               />
@@ -209,7 +209,7 @@ const AddTutorClient = () => {
                 id="input-type-slots"
                 name="totalSlots"
                 placeholder="20"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="number"
               />
             </div>
@@ -226,7 +226,7 @@ const AddTutorClient = () => {
               <Input
                 id="input-type-start-date"
                 name="startDate"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="date"
               />
             </div>
@@ -242,7 +242,7 @@ const AddTutorClient = () => {
                 id="input-type-location"
                 name="location"
                 placeholder="Dhaka / Chittagong"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="text"
                 required
               />
@@ -261,7 +261,7 @@ const AddTutorClient = () => {
                 id="input-type-institution"
                 name="institution"
                 placeholder="University / College"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="text"
                 required
               />
@@ -278,7 +278,7 @@ const AddTutorClient = () => {
                 id="input-type-experience"
                 name="experience"
                 placeholder="e.g. 3 years"
-                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#191921]"
+                className="w-full border border-white/10 rounded-lg text-white placeholder:text-[#4c4b6b] focus:outline-none bg-[#13131A]"
                 type="text"
               />
             </div>

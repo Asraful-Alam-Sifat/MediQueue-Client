@@ -59,7 +59,7 @@ const handleBookingSubmit = async (e) => {
 
   try {
   
-    const response = await fetch("http://localhost:5000/bookings", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/bookings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const handleBookingSubmit = async (e) => {
       
      
       try {
-        await fetch(`http://localhost:5000/tutors/${tutor._id}/decrease-slots`, {
+        await fetch(`${process.env.NEXT_PUBLIC_MEDI_QUEUE_SERVER_URL}/tutors/${tutor._id}/decrease-slots`, {
           method: "PATCH",
         });
       } catch (slotError) {

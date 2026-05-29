@@ -1,33 +1,67 @@
-# 🏥 MediQueue (Client-Side)
+# 🏥 MediQueue - Client
 
-[![Vercel Deployment](https://img.shields.io/badge/Deployment-Vercel-black?style=flat-square&logo=vercel)](https://medi-queue-bd.vercel.app)
-[![React](https://img.shields.io/badge/Framework-React-blue?style=flat-square&logo=react)](https://react.dev)
-[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
-[![Vite](https://img.shields.io/badge/Build%20Tool-Vite-646cff?style=flat-square&logo=vite)](https://vitejs.dev)
+[![Next.js](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square\&logo=next.js)](https://nextjs.org)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38bdf8?style=flat-square\&logo=tailwind-css)](https://tailwindcss.com)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB-green?style=flat-square\&logo=mongodb)](https://www.mongodb.com)
+[![Vercel](https://img.shields.io/badge/Deployment-Vercel-black?style=flat-square\&logo=vercel)](https://vercel.com)
 
-Welcome to the front-end user interface for **MediQueue**, a streamlined web application designed to manage medical/educational queue bookings and tutor allocations efficiently. This application focuses on delivering an intuitive, fully responsive, and fluid UI/UX experience for end users.
+## 🚀 Live Demo
 
-🔗 **Live Client Website:** [https://medi-queue-bd.vercel.app](https://medi-queue-bd.vercel.app)
+🔗 Live Website: [https://medi-queue-bd.vercel.app](https://medi-queue-bd.vercel.app/)
 
----
+## 📖 About The Project
+
+MediQueue is a modern full-stack appointment and queue management platform designed to simplify the process of finding tutors and booking sessions online. The platform provides a seamless experience for students to discover tutors, view tutor details, book sessions, and manage appointments efficiently.
+
+This repository contains the frontend application built with Next.js, featuring a responsive UI, secure authentication, and smooth user experience across all devices.
 
 ## ✨ Features
 
-* **Responsive Design:** Completely optimized for flawless viewports across Mobile, Tablet, and Desktop screens.
-* **Interactive Dashboard:** Beautifully styled endpoint indicators and modern components modeled closely after structural designs (as seen in our production platform API server view).
-* **Tutor Discovery:** Browse through all registered tutors or filter by 6 premium featured slots.
-* **Instant Queue Bookings:** Client-side form handling and submission pipelines linking directly to the backend processing layer.
-* **Secure Authentication:** Integrated client-side state handling to safeguard user booking credentials.
+### 👨‍🎓 User Features
 
----
+* Secure user authentication with Better Auth
+* Browse all available tutors
+* View detailed tutor information
+* Book tutoring sessions online
+* Manage personal bookings
+* Responsive design for all devices
+* Protected routes for authenticated users
+* Real-time data fetching from backend APIs
+
+### 🎨 UI Features
+
+* Modern and clean interface
+* Mobile-first responsive design
+* Interactive cards and animations
+* Fast page loading with Next.js
+* Optimized user experience
 
 ## 🛠️ Tech Stack
 
-* **Core Library:** React.js
-* **Build Tooling:** Vite
-* **Styling Framework:** Tailwind CSS (utilizing utility-first responsive modern aesthetics)
-* **Routing:** React Router DOM (or your preferred client-side router)
-* **HTTP Client:** Axios / Fetch API (for fetching data from the [MediQueue API Server]( https://medi-queue-server-bd.vercel.app))
+### Frontend
 
----
+* Next.js
+* React.js
+* Tailwind CSS
+* Better Auth
+* React Icons
+
+### Backend Integration
+
+* Express.js REST API
+* MongoDB Database
+
+## 🌐 Backend Repository
+
+The frontend communicates with the MediQueue backend API built using:
+
+* Node.js
+* Express.js
+* MongoDB
+* Better Auth
+
+## 👨‍💻 Author
+
+Developed by Asraful Alam
+
 

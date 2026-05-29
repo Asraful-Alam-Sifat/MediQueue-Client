@@ -1,8 +1,12 @@
 import Logo from "@/assets/mediqueue-logo.png";
-
 import RegisterForm from "@/Components/Register/RegisterForm";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata = {
+  title: "Register | Mediqueue",
+  description: "Online Book Borrowing Platform",
+};
 
 const RegisterPage = () => {
   return (

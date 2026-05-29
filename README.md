@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏥 MediQueue (Client-Side)
 
-## Getting Started
+[![Vercel Deployment](https://img.shields.io/badge/Deployment-Vercel-black?style=flat-square&logo=vercel)](https://medi-queue-bd.vercel.app)
+[![React](https://img.shields.io/badge/Framework-React-blue?style=flat-square&logo=react)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com)
+[![Vite](https://img.shields.io/badge/Build%20Tool-Vite-646cff?style=flat-square&logo=vite)](https://vitejs.dev)
 
-First, run the development server:
+Welcome to the front-end user interface for **MediQueue**, a streamlined web application designed to manage medical/educational queue bookings and tutor allocations efficiently. This application focuses on delivering an intuitive, fully responsive, and fluid UI/UX experience for end users.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 **Live Client Website:** [https://medi-queue-bd.vercel.app](https://medi-queue-bd.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Responsive Design:** Completely optimized for flawless viewports across Mobile, Tablet, and Desktop screens.
+* **Interactive Dashboard:** Beautifully styled endpoint indicators and modern components modeled closely after structural designs (as seen in our production platform API server view).
+* **Tutor Discovery:** Browse through all registered tutors or filter by 6 premium featured slots.
+* **Instant Queue Bookings:** Client-side form handling and submission pipelines linking directly to the backend processing layer.
+* **Secure Authentication:** Integrated client-side state handling to safeguard user booking credentials.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Core Library:** React.js
+* **Build Tooling:** Vite
+* **Styling Framework:** Tailwind CSS (utilizing utility-first responsive modern aesthetics)
+* **Routing:** React Router DOM (or your preferred client-side router)
+* **HTTP Client:** Axios / Fetch API (for fetching data from the [MediQueue API Server]( https://medi-queue-server-bd.vercel.app))
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
